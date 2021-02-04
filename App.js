@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { enableScreens } from "react-native-screens";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+
+import { HelloWorld } from "_molecules";
 
 enableScreens();
 
@@ -36,7 +38,7 @@ export default function App() {
         alignItems: "center",
         justifyContent: "center",
       }}>
-      <Text style={{ fontFamily: "roboto-light" }}>He</Text>
+      <HelloWorld name='Jeremy' />
     </View>
   );
 }

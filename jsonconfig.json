@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "_assets": ["assets/*"],
+      "_components": ["components/*"],
+      "_atoms": ["components/atoms/*"],
+      "_molecules": ["components/molecules/*"],
+      "_organisms": ["components/organisms/*"],
+      "_navigations": ["navigations/*"],
+      "_screens": ["screens/*"],
+      "_helpers": ["helpers/*"],
+      "_data": ["data/*"],
+      "_models": ["models/*"],
+      "_store": ["store/*"],
+      "_actions": ["store/actions/*"],
+      "_reducers": ["store/reducers/*"]
+    }
+  }
+}

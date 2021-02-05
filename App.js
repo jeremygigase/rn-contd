@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { enableScreens } from "react-native-screens";
-import { View } from "react-native";
 
-import { HelloWorld } from "_molecules";
+//Navigation
+import MainNav from "./navigations/MainNav";
 
 enableScreens();
 
@@ -31,14 +31,6 @@ export default function App() {
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "red",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
-      <HelloWorld name='Jeremy' />
-    </View>
+      <MainNav />
   );
 }

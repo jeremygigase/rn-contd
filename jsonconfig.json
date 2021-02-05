@@ -14,7 +14,8 @@
       "_models": ["models/*"],
       "_store": ["store/*"],
       "_actions": ["store/actions/*"],
-      "_reducers": ["store/reducers/*"]
+      "_reducers": ["store/reducers/*"],
+      "_constants": ["constants/*"]
     }
   }
 }

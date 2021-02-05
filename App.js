@@ -5,7 +5,7 @@ import * as Font from "expo-font";
 import { enableScreens } from "react-native-screens";
 
 //Navigation
-import MainNav from "./navigations/MainNav";
+import MainNav from "_navigations/main/MainNav";
 
 enableScreens();
 

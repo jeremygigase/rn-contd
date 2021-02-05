@@ -13,6 +13,12 @@ import {TouchableComponent, TextReg, TextLight} from "_atoms";
 
 
 const HomeScreen = ({ navigation }) => {
+
+  const selectItemHandler = () => {
+         navigation.navigate("Project Overview", {
+           screen: "Project",
+         });
+       };
 //   const projects = useSelector((state) => state.projects.projects);
 //   //const projects = [];
 
@@ -46,6 +52,14 @@ const HomeScreen = ({ navigation }) => {
           onSelectComponent={() => console.log("add")}
         >
           <TextReg style={styles.buttonText}>+ Add new project</TextReg>
+        </TouchableComponent>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableComponent
+          style={styles.button}
+          onSelectComponent={() => selectItemHandler()}
+        >
+          <TextReg style={styles.buttonText}>2 Projects</TextReg>
         </TouchableComponent>
       </View>
       {/* <View>

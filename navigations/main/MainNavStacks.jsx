@@ -7,7 +7,7 @@ import { SettingsScreen, ContactScreen, ProfileScreen, HomeScreen } from "_scree
 import { SplashScreen } from "_screens/splash";
 
 //Navigation
-//import ProjectTabNav from "../navigators/ProjectTabNav";
+import ProjectNav from "_navigations/project/ProjectNav";
 
 //Components
 import {HamburgerButton} from "_atoms";
@@ -37,15 +37,15 @@ const HomeStackScreen = ({ navigation }) => {
         }}
         screenOptions={{ backgroundColor: "#ffffff" }}
       />
-      {/* <HomeStack.Screen
+      <HomeStack.Screen
         name="Project Overview"
-        component={ProjectTabNav}
+        component={ProjectNav}
         //options={({ route }) => ({ title: route.params.title })}
         options={{
           headerRight: () => <HamburgerButton navigation={navigation} />,
           headerLeft: () => {},
         }}
-      /> */}
+      /> 
     </HomeStack.Navigator>
   );
 };
@@ -132,5 +132,4 @@ export {
   ProfileStackScreen,
   ContactStackScreen,
   SettingsStackScreen,
-
 };

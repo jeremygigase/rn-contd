@@ -1,17 +1,26 @@
 import React from "react";
+import { StyleSheet, Image } from "react-native";
 
-import Icon from "react-native-vector-icons/Ionicons";
+//Assets
+import { Icons } from "_assets";
+
+// Components
+import TouchableComponent from "./TouchableComponent";
 
 const HamburgerButton = ({ navigation }) => {
   return (
-    <Icon.Button
-      name="ios-menu"
-      color="#000"
-      size={25}
-      backgroundColor="#fff"
-      onPress={() => navigation.openDrawer()}
-    />
+  <TouchableComponent onSelectComponent={() => navigation.openDrawer()}>
+    <Image source={Icons["contact"]} style={styles.icon} />
+  </TouchableComponent>
+
   );
 };
 
 export default HamburgerButton;
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});

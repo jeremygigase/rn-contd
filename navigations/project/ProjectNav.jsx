@@ -6,14 +6,14 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { CommonActions } from "@react-navigation/native";
 
 // Screens
-import {ProjectScreen} from "_screens/project";
+import { ProjectScreen } from "_screens/project";
 
 // Stacks
 import {
-    CharacterStackScreen,
-    SceneStackScreen ,
-    LocationStackScreen,
-    ScriptDayStackScreen,
+  CharacterStackScreen,
+  SceneStackScreen,
+  LocationStackScreen,
+  ScriptDayStackScreen,
 } from "./ProjectNavStacks";
 
 //Constants
@@ -46,11 +46,10 @@ function getActiveScreenColor(route) {
 }
 
 const ProjectNav = (props) => {
-
-  console.log(Colors)
+  console.log(Colors);
   return (
     <Tab.Navigator
-      initialRouteName="Project"
+      initialRouteName='Project'
       tabBarOptions={{
         activeTintColor: getActiveScreenColor(props.route),
         style: {
@@ -64,10 +63,9 @@ const ProjectNav = (props) => {
           borderLeftColor: "grey",
           position: "absolute",
         },
-      }}
-    >
+      }}>
       <Tab.Screen
-        name="Project"
+        name='Project'
         component={ProjectScreen} //hier projectstackscreen waarschijnlijk
         options={{
           tabBarLabel: "Home",
@@ -80,20 +78,22 @@ const ProjectNav = (props) => {
         }}
       />
       <Tab.Screen
-        name="Characters"
+        name='Characters'
         component={CharacterStackScreen}
         options={{
           tabBarLabel: "Characters",
           tabBarIcon: ({ focused }) => (
             <Image
-              source={focused ? Icons["tabCharacterOn"] : Icons["tabCharacterOff"]}
+              source={
+                focused ? Icons["tabCharacterOn"] : Icons["tabCharacterOff"]
+              }
               style={styles.icon}
             />
           ),
         }}
       />
       <Tab.Screen
-        name="Scenes"
+        name='Scenes'
         component={SceneStackScreen}
         options={{
           tabBarLabel: "Scenes",
@@ -106,20 +106,22 @@ const ProjectNav = (props) => {
         }}
       />
       <Tab.Screen
-        name="Locations"
+        name='Locations'
         component={LocationStackScreen}
         options={{
           tabBarLabel: "Locations",
           tabBarIcon: ({ focused }) => (
             <Image
-              source={focused ? Icons["tabLocationOn"] : Icons["tabLocationOff"]}
+              source={
+                focused ? Icons["tabLocationOn"] : Icons["tabLocationOff"]
+              }
               style={styles.icon}
             />
           ),
         }}
       />
       <Tab.Screen
-        name="Script Days"
+        name='Script Days'
         component={ScriptDayStackScreen}
         tabPress={() => {
           props.navigation.dispatch(
@@ -132,7 +134,9 @@ const ProjectNav = (props) => {
           tabBarLabel: "Script Days",
           tabBarIcon: ({ focused }) => (
             <Image
-              source={focused ? Icons["tabScriptDayOn"] : Icons["tabScriptDayOff"]}
+              source={
+                focused ? Icons["tabScriptDayOn"] : Icons["tabScriptDayOff"]
+              }
               style={styles.icon}
             />
           ),

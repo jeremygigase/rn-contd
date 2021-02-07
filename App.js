@@ -3,9 +3,34 @@ import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { enableScreens } from "react-native-screens";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
 
 //Navigation
 import MainNav from "_navigations/main/MainNav";
+
+//Store
+import {
+  projectsReducer,
+  scenesReducer,
+  picturesReducer,
+  scriptDaysReducer,
+  charactersReducer,
+  locationsReducer,
+  scenesCharactersReducer,
+} from "_store/reducers";
+
+const rootReducer = combineReducers({
+  projects: projectsReducer,
+  scenes: scenesReducer,
+  pictures: picturesReducer,
+  scriptDays: scriptDaysReducer,
+  characters: charactersReducer,
+  locations: locationsReducer,
+  scenesCharacters: scenesCharactersReducer,
+});
+
+const store = createStore(rootReducer);
 
 enableScreens();
 
@@ -31,6 +56,8 @@ export default function App() {
   }
 
   return (
+    <Provider store={store}>
       <MainNav />
+    </Provider>
   );
 }

@@ -14,3 +14,13 @@ export const Icons = {
     tabScriptDayOn: require("../assets/icons/navscriptday_on_2.png"),
     tabScriptDayOff: require("../assets/icons/navscriptday_off_2.png"),
   };
+
+  export const NoIcons = {
+    cha: require("_assets/images/character/no_character_2.png"),
+    loc: require("_assets/images/location/no_location_2.png"),
+    sce: require("_assets/images/scene/no_scene_3.png"),
+    scr: require("_assets/images/scriptday/no_scriptday_1.png"),
+    pro: require("_assets/images/project/no_project_3.png"),
+    rec: require("_assets/images/project/no_recentactivity_1.png"),
+  };
+  

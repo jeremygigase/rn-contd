@@ -11,6 +11,7 @@ export default Main;
 
 const styles = StyleSheet.create({
   main: {
+    alignItems: "center",
     backgroundColor: "white",
     height: "100%",
     width: "100%",

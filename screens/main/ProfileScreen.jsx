@@ -13,8 +13,7 @@ import { Icons } from "_assets";
 
 const ProfileScreen = () => {
   return (
-    <View style={styles.container}>
-      <Main style={styles.main}>
+      <Main>
         <View style={styles.picture}>
           <Avatar.Image
             source={{
@@ -83,24 +82,16 @@ const ProfileScreen = () => {
             <Text>Join</Text>
           </TouchableComponent>
         </View>
-
         <Footer />
       </Main>
-    </View>
+
   );
 };
 
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  main: {
-    alignItems: "center",
-  },
+
   picture: {
     marginTop: "8%",
   },

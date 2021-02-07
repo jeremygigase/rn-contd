@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { Avatar, Title, Caption, Drawer } from "react-native-paper";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+//import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //Components
 import {Footer, MainDrawerItem} from "_molecules";
@@ -46,15 +46,7 @@ const MainNavContent = (props) => {
         <Footer />
       </View>
       <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem
-          icon={({ color, size }) => (
-            <Icon name="exit-to-app" color={color} size={size} />
-          )}
-          label="Sign Out"
-          onPress={() => {
-            console.log("signed out");
-          }}
-        ></DrawerItem>
+      <MainDrawerItem props={props} name={"Sign Out"} i={"contact"} />
       </Drawer.Section>
     </View>
   );

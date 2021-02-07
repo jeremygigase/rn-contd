@@ -9,8 +9,7 @@ import {TouchableComponent} from "_atoms";
 
 const SettingsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Main style={styles.main}>
+      <Main>
         <View style={styles.buttonControl}>
           <TouchableComponent style={styles.button}>
             <Text> Settings Screen</Text>
@@ -41,21 +40,13 @@ const SettingsScreen = () => {
         </View>
         <Footer />
       </Main>
-    </View>
+
   );
 };
 
 export default SettingsScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  main: {
-    alignItems: "center",
-  },
   buttonControl: {
     width: "80%",
     marginTop: "8%",

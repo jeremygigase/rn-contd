@@ -34,8 +34,7 @@ const ContactScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Main style={styles.main}>
+      <Main>
         <View style={styles.formControl}>
           <Text>Question, request or love poem? </Text>
           <Text>CONT’D will try to answer your mail as soon as possible.</Text>
@@ -67,18 +66,12 @@ const ContactScreen = () => {
         </TouchableComponent>
         <Footer />
       </Main>
-    </View>
   );
 };
 
 export default ContactScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   inputEmail: {
     paddingHorizontal: 2,
     paddingVertical: 5,
@@ -92,9 +85,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
     marginTop: "4%",
-  },
-  main: {
-    alignItems: "center",
   },
   formControl: {
     width: "80%",

@@ -20,7 +20,7 @@ const SplashScreen = (props) => {
           console.log("Animation Finished!");
           props.navigation.replace("Home");
         }}
-      />
+      /> 
     </View>
   );
 };

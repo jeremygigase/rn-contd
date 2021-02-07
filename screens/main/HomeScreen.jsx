@@ -1,68 +1,49 @@
 //Packages
 import React from "react";
 import { View, StyleSheet, FlatList, Image } from "react-native";
-//import { useSelector, useDispatch } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
 
 //Components
-import {Main} from "_components";
-//import {Footer,ProfileInfoSegment} from "_molecules";
-import {TouchableComponent, TextReg, TextLight} from "_atoms";
-//import ProjectItem from "../components/ProjectItem";
+import { Main } from "_components";
+import { ProjectItem, NoItems } from "_molecules";
+import { TouchableComponent, TextReg, TextLight } from "_atoms";
 //import NoItems from "../components/NoItems";
 
-
 const HomeScreen = ({ navigation }) => {
+  const projects = useSelector((state) => state.projects.projects);
+  //const projects = [];
 
-  const selectItemHandler = () => {
-         navigation.navigate("Project Overview", {
-           screen: "Project",
-         });
-       };
-//   const projects = useSelector((state) => state.projects.projects);
-//   //const projects = [];
+  const selectItemHandler = (item) => {
+    navigation.navigate("Project Overview", {
+      screen: "Project",
+      params: { id: item.id },
+      projectTitle: item.name,
+    });
+  };
 
-//   const selectItemHandler = (item) => {
-//     navigation.navigate("Project Overview", {
-//       screen: "Project",
-//       params: { id: item.id },
-//       projectTitle: item.name,
-//     });
-//   };
-
-//   const renderProjectItem = (itemData) => {
-//     return (
-//       <ProjectItem
-//         name={itemData.item.name}
-//         creator={itemData.item.creator}
-//         created={itemData.item.created}
-//         color={itemData.item.color}
-//         image={itemData.item.imageFilename}
-//         onSelectProject={() => selectItemHandler(itemData.item)}
-//         //onSelectProject={() => console.log("project")}
-//       />
-//     );
-//   };
+  const renderProjectItem = (itemData) => {
+    return (
+      <ProjectItem
+        name={itemData.item.name}
+        creator={itemData.item.creator}
+        created={itemData.item.created}
+        color={itemData.item.color}
+        image={itemData.item.imageFilename}
+        onSelectProject={() => selectItemHandler(itemData.item)}
+      />
+    );
+  };
 
   return (
     <Main>
       <View style={styles.buttonContainer}>
         <TouchableComponent
           style={styles.button}
-          onSelectComponent={() => console.log("add")}
-        >
+          onSelectComponent={() => console.log("add")}>
           <TextReg style={styles.buttonText}>+ Add new project</TextReg>
         </TouchableComponent>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableComponent
-          style={styles.button}
-          onSelectComponent={() => selectItemHandler()}
-        >
-          <TextReg style={styles.buttonText}>2 Projects</TextReg>
-        </TouchableComponent>
-      </View>
-      {/* <View>
+      <View>
         {projects !== "undefined" && projects.length > 0 ? (
           <>
             <FlatList
@@ -81,7 +62,7 @@ const HomeScreen = ({ navigation }) => {
         ) : (
           <NoItems color={"black"} segName={"project"} icon={"pro"} />
         )}
-      </View> */}
+      </View>
     </Main>
   );
 };

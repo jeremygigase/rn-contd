@@ -9,10 +9,9 @@ import TouchableComponent from "./TouchableComponent";
 
 const HamburgerButton = ({ navigation }) => {
   return (
-  <TouchableComponent onSelectComponent={() => navigation.openDrawer()}>
-    <Image source={Icons["contact"]} style={styles.icon} />
-  </TouchableComponent>
-
+    <TouchableComponent onSelectComponent={() => navigation.openDrawer()}>
+      <Image source={Icons["contact"]} style={styles.icon} />
+    </TouchableComponent>
   );
 };
 
@@ -22,5 +21,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
+    marginRight: 16,
   },
 });

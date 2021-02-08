@@ -9,6 +9,8 @@ import { NoIcons } from "_assets";
 const NoItems = ({ color, segName, icon }) => {
   const [clicked, setClicked] = useState(false);
 
+  console.log(NoIcons[icon]);
+
   let button = (
     <TouchableComponent
       style={[styles.addButton, { borderColor: color }]}
@@ -39,14 +41,16 @@ const NoItems = ({ color, segName, icon }) => {
   }
 
   return (
-    <View style={styles.noContainer}>
-      <Image source={NoIcons[icon]} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text>Huh?</Text>
-        <Text>This is weird there should be some {segName}s here?</Text>
-        <Text>Maybe you can help and add some!</Text>
+    <View>
+      <View style={styles.noContainer}>
+        <Image source={NoIcons[icon]} style={styles.image} />
+        <View style={styles.textContainer}>
+          <Text>Huh?</Text>
+          <Text>This is weird there should be some {segName}s here?</Text>
+          <Text>Maybe you can help and add some!</Text>
+        </View>
+        {button}
       </View>
-      {button}
     </View>
   );
 };

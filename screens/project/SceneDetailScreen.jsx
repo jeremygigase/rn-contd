@@ -77,56 +77,61 @@ const SceneDetailScreen = (props) => {
         color={Colors.scenes}
         added={`Added on ${created} by member x`}
       />
-      <View
-        style={{
-          height: "40%",
-          width: "100%",
-        }}>
-        {selectedPictures !== "undefined" && selectedPictures.length > 0 ? (
-          <FlatList
-            keyExtractor={(item) => item.id}
-            data={selectedPictures}
-            renderItem={renderItem}
-            numColumns={2}
+      <View style={styles.characterContainer}>
+        <View
+          style={{
+            height: "40%",
+            width: "100%",
+          }}>
+          {selectedPictures !== "undefined" && selectedPictures.length > 0 ? (
+            <FlatList
+              keyExtractor={(item) => item.id}
+              data={selectedPictures}
+              renderItem={renderItem}
+              numColumns={2}
+            />
+          ) : (
+            <DetailImage image={""} icon={icon} />
+          )}
+        </View>
+
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.contentContainer}>
+          <TextLight>{date}</TextLight>
+          <DetailSegmentItem
+            selected={selectedCharacters}
+            screen={"Characters"}
+            detail={"Characters Overview"}
+            name={sceneNumber}
+            color={Colors.characters}
+            icon={Icons["tabCharacterOn"]}
+            navigation={props.navigation}
+            text={"characters"}
           />
-        ) : (
-          <DetailImage image={""} icon={icon} />
-        )}
+          <DetailSegmentItem
+            selected={selectedLocation}
+            screen={"Locations"}
+            detail={"Locations Overview"}
+            name={selectedLocation[0].name}
+            color={Colors.locations}
+            icon={Icons["tabLocationOn"]}
+            navigation={props.navigation}
+            text={"script days"}
+          />
+          <DetailSegmentItem
+            selected={selectedScriptDay}
+            screen={"Script Days"}
+            detail={"Script Days Overview"}
+            name={selectedScriptDay[0].name}
+            color={Colors.scriptDays}
+            icon={Icons["tabScriptDayOn"]}
+            navigation={props.navigation}
+            text={"script days"}
+          />
+          <DetailRemarks text={remarks} />
+        </ScrollView>
       </View>
-      <TextLight>{date}</TextLight>
-      <ScrollView>
-        <DetailSegmentItem
-          selected={selectedCharacters}
-          screen={"Characters"}
-          detail={"Characters Overview"}
-          name={sceneNumber}
-          color={Colors.characters}
-          icon={Icons["tabCharacterOn"]}
-          navigation={props.navigation}
-          text={"characters"}
-        />
-        <DetailSegmentItem
-          selected={selectedLocation}
-          screen={"Locations"}
-          detail={"Locations Overview"}
-          name={selectedLocation[0].name}
-          color={Colors.locations}
-          icon={Icons["tabLocationOn"]}
-          navigation={props.navigation}
-          text={"script days"}
-        />
-        <DetailSegmentItem
-          selected={selectedScriptDay}
-          screen={"Script Days"}
-          detail={"Script Days Overview"}
-          name={selectedScriptDay[0].name}
-          color={Colors.scriptDays}
-          icon={Icons["tabScriptDayOn"]}
-          navigation={props.navigation}
-          text={"script days"}
-        />
-        <DetailRemarks text={remarks} />
-      </ScrollView>
     </Main>
   );
 };
@@ -134,12 +139,23 @@ const SceneDetailScreen = (props) => {
 export default SceneDetailScreen;
 
 const styles = StyleSheet.create({
-  main: {
-    height: "100%",
-    width: "100%",
-    alignItems: "center",
+  characterContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flex: 1,
   },
-
+  scrollView: {
+    height: "44%",
+    width: "80%",
+    alignSelf: "center",
+    padding: 20,
+  },
+  contentContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 50,
+  },
   item: {
     margin: 20,
     width: "40%",
@@ -148,5 +164,22 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  characterContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flex: 1,
+  },
+  scrollView: {
+    height: "44%",
+    width: "80%",
+    alignSelf: "center",
+    padding: 20,
+  },
+  contentContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 50,
   },
 });

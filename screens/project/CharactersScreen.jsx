@@ -60,7 +60,7 @@ const CharactersScreen = (props) => {
         btnText={"+Add Character"}
         scnBtn={1}
       />
-      <Main>
+      <Main style={styles.scrollView}>
         {name}
         {selectedCharacters !== "undefined" && selectedCharacters.length > 0 ? (
           <FlatList
@@ -83,4 +83,9 @@ const CharactersScreen = (props) => {
 
 export default CharactersScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  scrollView: {
+    height: "82%",
+    alignSelf: "center",
+  },
+});

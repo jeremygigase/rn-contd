@@ -46,7 +46,7 @@ const ScenesScreen = (props, { item, route, navigation }) => {
         headerText={"Scenes"}
         btnText={"+Add Scene"}
       />
-      <Main>
+      <Main style={styles.scrollView}>
         {name}
         {selectedScenes !== "undefined" && selectedScenes.length > 0 ? (
           <FlatList
@@ -85,5 +85,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  scrollView: {
+    height: "82%",
+    alignSelf: "center",
   },
 });

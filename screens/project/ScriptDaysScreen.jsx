@@ -73,7 +73,7 @@ const ScriptDaysScreen = (props) => {
         btnText={"+Add Script Day"}
         scnBtn={1}
       />
-      <Main>
+      <Main style={styles.scrollView}>
         {name}
 
         {selectedScriptDays !== undefined && selectedScriptDays.length > 0 ? (
@@ -98,9 +98,8 @@ const ScriptDaysScreen = (props) => {
 export default ScriptDaysScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  scrollView: {
+    height: "82%",
+    alignSelf: "center",
   },
 });

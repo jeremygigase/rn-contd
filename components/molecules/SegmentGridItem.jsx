@@ -155,8 +155,8 @@ export default SegmentGridItem;
 const styles = StyleSheet.create({
   sceneItem: {
     //height: "40%",
-    width: "80%",
-    marginLeft: "10%",
+    width: "100%",
+    //marginLeft: "8%",
     marginTop: "4%",
     overflow: "hidden",
     flexDirection: "row",

@@ -47,7 +47,7 @@ const ScriptDayDetailScreen = (props) => {
   };
 
   return (
-    <Main>
+    <Main style={styles.scrollView}>
       <DetailHeader
         title={name}
         color={Colors.scriptDays}
@@ -63,12 +63,16 @@ const ScriptDayDetailScreen = (props) => {
       ) : (
         <NoItems color={Colors.scenes} segName={"scenes"} icon={"sce"} />
       )}
-      <TextReg> </TextReg>
-      <TextLight>name {name} </TextLight>
     </Main>
   );
 };
 
 export default ScriptDayDetailScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  scrollView: {
+    height: "90%",
+    alignSelf: "center",
+    //padding: 20,
+  },
+});

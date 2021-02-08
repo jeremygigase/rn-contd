@@ -59,7 +59,7 @@ const LocationsScreen = (props) => {
         btnText={"+Add Location"}
         scnBtn={1}
       />
-      <Main>
+      <Main style={styles.scrollView}>
         {name}
         {selectedLocations !== "undefined" && selectedLocations.length > 0 ? (
           <FlatList
@@ -79,9 +79,8 @@ const LocationsScreen = (props) => {
 export default LocationsScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  scrollView: {
+    height: "82%",
+    alignSelf: "center",
   },
 });

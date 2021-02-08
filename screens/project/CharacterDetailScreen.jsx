@@ -74,7 +74,9 @@ const CharacterDetailScreen = (props) => {
           }}>
           <DetailImage image={pictureFilename} icon={icon} />
         </View>
-        <ScrollView>
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.contentContainer}>
           <View style={styles.scrollContainer}>
             <DetailTitleSegmentItem
               name={callsheetNumber + ". " + characterName}
@@ -113,12 +115,6 @@ const CharacterDetailScreen = (props) => {
 export default CharacterDetailScreen;
 
 const styles = StyleSheet.create({
-  main: {
-    height: "100%",
-    width: "100%",
-    alignItems: "center",
-  },
-
   header: {
     paddingTop: 16,
     paddingBottom: 16,
@@ -126,15 +122,26 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   characterContainer: {
-    height: "100%",
-    width: "100%",
-    marginTop: "4%",
-    alignItems: "center",
-    backgroundColor: "white",
-    marginTop: "4%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flex: 1,
   },
   scrollContainer: {
+    backgroundColor: "transparent",
+    paddingLeft: 20,
+    paddingRight: 20,
+    //paddingTop: 20,
+  },
+  scrollView: {
+    height: "44%",
+    width: "80%",
+    alignSelf: "center",
+    padding: 20,
+  },
+  contentContainer: {
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: "20%", // moet opgelost worden
+    paddingBottom: 50,
   },
 });

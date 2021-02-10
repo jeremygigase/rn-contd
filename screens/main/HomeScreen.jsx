@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 //Components
 import { Main } from "_components";
 import { ProjectItem, NoItems } from "_molecules";
-import { TouchableComponent, TextReg, TextLight } from "_atoms";
+import { TouchableComponent, TextReg, TextLight, Loading } from "_atoms";
 //import NoItems from "../components/NoItems";
 
 const HomeScreen = ({ navigation }) => {
@@ -46,17 +46,20 @@ const HomeScreen = ({ navigation }) => {
       <View>
         {projects !== "undefined" && projects.length > 0 ? (
           <>
-            <FlatList
-              keyExtractor={(item, index) => item.id}
-              data={projects}
-              renderItem={renderProjectItem}
-              numColumns={1}
-            />
+            <View style={styles.projectList}>
+              <FlatList
+                keyExtractor={(item, index) => item.id}
+                data={projects}
+                renderItem={renderProjectItem}
+                numColumns={1}
+              />
+            </View>
             <View style={styles.pastProjects}>
               <TextReg style={styles.title}>Past Projects</TextReg>
               <TextLight>
                 Hier alle projecten die niet recentelijk zijn aangeklikt
               </TextLight>
+              <Loading />
             </View>
           </>
         ) : (
@@ -87,7 +90,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   title: {
-    fontFamily: "roboto-regular",
     fontSize: 24,
   },
   pastProjects: {
@@ -97,5 +99,11 @@ const styles = StyleSheet.create({
   contain: {
     flex: 1,
     height: 150,
+  },
+  projectList: {
+    marginTop: "2%",
+    borderWidth: 1,
+    borderColor: "black",
+    height: "46%",
   },
 });

@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 //Screens
 import {
   SettingsScreen,
-  ContactScreen,
+  FAQScreen,
   ProfileScreen,
   HomeScreen,
 } from "_screens/main";
@@ -20,7 +20,7 @@ import { HamburgerButton } from "_atoms";
 const SplashStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
-const ContactStack = createStackNavigator();
+const FAQStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 
 const stylingHeader = {
@@ -104,17 +104,17 @@ const ProfileStackScreen = ({ navigation }) => {
   );
 };
 
-const ContactStackScreen = ({ navigation }) => {
+const FAQStackScreen = ({ navigation }) => {
   return (
-    <ContactStack.Navigator screenOptions={stylingHeader}>
-      <ContactStack.Screen
-        name='Contact'
-        component={ContactScreen}
+    <FAQStack.Navigator screenOptions={stylingHeader}>
+      <FAQStack.Screen
+        name='FAQ'
+        component={FAQScreen}
         options={{
           headerRight: () => <HamburgerButton navigation={navigation} />,
         }}
       />
-    </ContactStack.Navigator>
+    </FAQStack.Navigator>
   );
 };
 
@@ -122,6 +122,6 @@ export {
   SplashStackScreen,
   HomeStackScreen,
   ProfileStackScreen,
-  ContactStackScreen,
+  FAQStackScreen,
   SettingsStackScreen,
 };

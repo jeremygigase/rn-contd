@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
 //Components
-import {Main} from "_components";
-import {Footer} from "_molecules";
-import {TouchableComponent} from "_atoms";
+import { Main } from "_components";
+import { Footer } from "_molecules";
+import { TouchableComponent } from "_atoms";
 
-const ContactScreen = () => {
+const FAQScreen = () => {
   const [email, setEmail] = useState("");
   const [remarkText, setRemarkText] = useState("");
 
@@ -34,42 +34,41 @@ const ContactScreen = () => {
   };
 
   return (
-      <Main>
-        <View style={styles.formControl}>
-          <Text>Question, request or love poem? </Text>
-          <Text>CONT’D will try to answer your mail as soon as possible.</Text>
-        </View>
-        <View style={styles.formControl}>
-          <Text>email</Text>
-          <TextInput
-            style={styles.inputEmail}
-            onChangeText={(text) => setEmail(text)}
-            value={email}
-          />
-        </View>
-        <View style={styles.formControl}>
-          <Text>Tell us!</Text>
-          <TextInput
-            style={styles.inputRemark}
-            onChangeText={(text) => setRemarkText(text)}
-            value={remarkText}
-          />
-        </View>
-        <TouchableComponent
-          style={styles.sendButton}
-          style={{ ...styles.sendButton, ...{ backgroundColor: bgColor } }}
-          onSelectComponent={submitHandler}
-        >
-          <Text style={{ ...styles.sendButtonText, ...{ color: colorText } }}>
-            Send
-          </Text>
-        </TouchableComponent>
-        <Footer />
-      </Main>
+    <Main>
+      <View style={styles.formControl}>
+        <Text>Question, request or love poem? </Text>
+        <Text>CONT’D will try to answer your mail as soon as possible.</Text>
+      </View>
+      <View style={styles.formControl}>
+        <Text>email</Text>
+        <TextInput
+          style={styles.inputEmail}
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+        />
+      </View>
+      <View style={styles.formControl}>
+        <Text>Tell us!</Text>
+        <TextInput
+          style={styles.inputRemark}
+          onChangeText={(text) => setRemarkText(text)}
+          value={remarkText}
+        />
+      </View>
+      <TouchableComponent
+        style={styles.sendButton}
+        style={{ ...styles.sendButton, ...{ backgroundColor: bgColor } }}
+        onSelectComponent={submitHandler}>
+        <Text style={{ ...styles.sendButtonText, ...{ color: colorText } }}>
+          Send
+        </Text>
+      </TouchableComponent>
+      <Footer />
+    </Main>
   );
 };
 
-export default ContactScreen;
+export default FAQScreen;
 
 const styles = StyleSheet.create({
   inputEmail: {

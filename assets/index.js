@@ -3,6 +3,8 @@ export const Icons = {
   home: require("../assets/icons/icon_home_black_3.png"),
   settings: require("../assets/icons/icon_settings_black_3.png"),
   contact: require("../assets/icons/icon_contact_black_3.png"),
+  faq: require("../assets/icons/icon_faq_black_1.png"),
+  logout: require("../assets/icons/icon_logout_2.png"),
   tabHomeOn: require("../assets/icons/navhome_on_1.png"),
   tabHomeOff: require("../assets/icons/navhome_off_1.png"),
   tabCharacterOn: require("../assets/icons/navcharacter_on_2.png"),

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 //Components
-import { TouchableComponent, TextReg, TextLight } from "_atoms";
+import { TouchableComponent, TextReg, TextLight, TextBold } from "_atoms";
 //Assets
 import { Icons } from "_assets";
 
@@ -179,17 +179,11 @@ const styles = StyleSheet.create({
   textBoxText: {
     marginLeft: 8,
   },
-  title: {
-    fontFamily: "roboto-regular",
-  },
   titleBox: {
     marginLeft: 8,
     marginTop: 8,
   },
   sceneInfo: {
     marginLeft: 8,
-  },
-  text: {
-    fontFamily: "roboto-light",
   },
 });

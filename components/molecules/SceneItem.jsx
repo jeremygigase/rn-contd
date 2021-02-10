@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Platform } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 //Components
-import { TouchableComponent } from "_atoms";
+import { TouchableComponent, TextReg, TextLight, TextBold } from "_atoms";
 
 //Constants
 import Colors from "_constants/Colors";
@@ -55,7 +55,7 @@ const SceneItem = (props) => {
       {image}
       <View style={styles.sceneInfo}>
         <View style={styles.titleBox}>
-          <Text style={styles.title}>{date}</Text>
+          <TextLight>{date}</TextLight>
         </View>
         <View style={styles.textBox}>
           <Image
@@ -67,7 +67,7 @@ const SceneItem = (props) => {
             }}
           />
           <View style={styles.textBoxText}>
-            <Text>Scene {sceneNumber}</Text>
+            <TextLight>Scene {sceneNumber}</TextLight>
           </View>
         </View>
         <View style={styles.textBox}>
@@ -80,7 +80,7 @@ const SceneItem = (props) => {
             }}
           />
           <View style={styles.textBoxText}>
-            <Text>SD {sd}</Text>
+            <TextLight>SD {sd}</TextLight>
           </View>
         </View>
       </View>
@@ -117,17 +117,11 @@ const styles = StyleSheet.create({
   textBoxText: {
     marginLeft: 8,
   },
-  title: {
-    fontFamily: "roboto-regular",
-  },
   titleBox: {
     marginLeft: 8,
     marginTop: 8,
   },
   sceneInfo: {
     marginLeft: 8,
-  },
-  text: {
-    fontFamily: "roboto-light",
   },
 });

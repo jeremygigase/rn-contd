@@ -6,8 +6,7 @@ import { Avatar, Title, Caption, Drawer } from "react-native-paper";
 //import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //Components
-import {Footer, MainDrawerItem} from "_molecules";
-
+import { Footer, MainDrawerItem } from "_molecules";
 
 const MainNavContent = (props) => {
   return (
@@ -19,8 +18,7 @@ const MainNavContent = (props) => {
               <TouchableOpacity
                 onPress={() => {
                   props.navigation.navigate("Profile");
-                }}
-              >
+                }}>
                 <Avatar.Image
                   source={{
                     uri:
@@ -38,7 +36,7 @@ const MainNavContent = (props) => {
           <Drawer.Section style={styles.drawerSection}>
             <MainDrawerItem props={props} name={"Home"} i={"home"} />
             <MainDrawerItem props={props} name={"Settings"} i={"settings"} />
-            <MainDrawerItem props={props} name={"Contact"} i={"contact"} />
+            <MainDrawerItem props={props} name={"FAQ"} i={"faq"} />
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
@@ -46,7 +44,7 @@ const MainNavContent = (props) => {
         <Footer />
       </View>
       <Drawer.Section style={styles.bottomDrawerSection}>
-      <MainDrawerItem props={props} name={"Sign Out"} i={"contact"} />
+        <MainDrawerItem props={props} name={"Sign Out"} i={"logout"} />
       </Drawer.Section>
     </View>
   );

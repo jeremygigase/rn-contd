@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   logo: {
     fontSize: 32,
     marginBottom: 8,
+    fontFamily: "Courier New",
   },
   tagLine: {
     fontSize: 16,

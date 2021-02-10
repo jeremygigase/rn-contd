@@ -10,7 +10,7 @@ import {
   HomeStackScreen,
   ProfileStackScreen,
   SettingsStackScreen,
-  ContactStackScreen,
+  FAQStackScreen,
 } from "./MainNavStacks";
 
 const Drawer = createDrawerNavigator();
@@ -19,17 +19,16 @@ const MainNav = () => {
   return (
     <NavigationContainer style={{ backgroundColor: "#000000" }}>
       <Drawer.Navigator
-        initialRouteName="Splash"
+        initialRouteName='Splash'
         drawerContent={(props) => <MainNavContent {...props} />}
         screenOptions={{
           headerTitleStyle: {
             fontWeight: "bold",
             fontSize: 24,
           },
-        }}
-      >
+        }}>
         <Drawer.Screen
-          name="Splash"
+          name='Splash'
           component={SplashStackScreen}
           options={{
             drawerLabel: () => null,
@@ -37,10 +36,10 @@ const MainNav = () => {
             drawerIcon: () => null,
           }}
         />
-        <Drawer.Screen name="Profile" component={ProfileStackScreen} />
-        <Drawer.Screen name="Home" component={HomeStackScreen} />
-        <Drawer.Screen name="Settings" component={SettingsStackScreen} />
-        <Drawer.Screen name="Contact" component={ContactStackScreen} />
+        <Drawer.Screen name='Profile' component={ProfileStackScreen} />
+        <Drawer.Screen name='Home' component={HomeStackScreen} />
+        <Drawer.Screen name='Settings' component={SettingsStackScreen} />
+        <Drawer.Screen name='FAQ' component={FAQStackScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

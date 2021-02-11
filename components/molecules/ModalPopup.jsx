@@ -19,9 +19,7 @@ const ModalPopup = ({ image }) => {
             <TouchableComponent
               style={styles.modalButton}
               onSelectComponent={() => {
-                console.log(modalVisible);
                 setModalVisible(!modalVisible);
-                console.log("close");
               }}>
               <Image source={{ uri: image }} style={styles.image2} />
             </TouchableComponent>
@@ -32,10 +30,7 @@ const ModalPopup = ({ image }) => {
       <TouchableComponent
         style={styles.openButton}
         onSelectComponent={() => {
-          console.log(modalVisible);
           setModalVisible(true);
-          console.log(image);
-          console.log("open");
         }}>
         <Image source={{ uri: image }} style={styles.image} />
       </TouchableComponent>

@@ -8,13 +8,21 @@ import SceneCharacter from "_models/sceneCharacter";
 import ScriptDay from "_models/scriptDay";
 
 export const CHARACTERS = [
+  // id,
+  // projectId,
+  // characterName,
+  // actorName,
+  // pictureFilename,
+  // callsheetNumber
+  //characters
   new Character(
     "1",
     "1",
     "Spike Spiegel",
     "Steven Blum",
     "https://i.pinimg.com/originals/09/1b/70/091b7031232b73a19bddcf5e43c7a5bc.jpg",
-    "1"
+    "1",
+    "remarks hier"
   ),
   new Character(
     "2",
@@ -22,7 +30,8 @@ export const CHARACTERS = [
     "Jet Black",
     "Iemand Jet",
     "https://cdn.myanimelist.net/images/characters/11/253723.jpg",
-    "2"
+    "2",
+    "remarks hier"
   ),
   new Character(
     "3",
@@ -30,7 +39,8 @@ export const CHARACTERS = [
     "Anna",
     "Alejandra Theus",
     "https://www.writersunlimited.nl/thumbs/700x700r/2017/12/20171207170236_1.jpg",
-    "1"
+    "1",
+    "remarks hier"
   ),
   new Character(
     "4",
@@ -38,7 +48,8 @@ export const CHARACTERS = [
     "Lou",
     "Kes Bakker",
     "https://www.writersunlimited.nl/thumbs/700x700r/2017/12/20171207170236_1.jpg",
-    "6"
+    "6",
+    "remarks hier"
   ),
   new Character(
     "5",
@@ -46,7 +57,8 @@ export const CHARACTERS = [
     "Vic",
     "Mo Bakker",
     "https://www.writersunlimited.nl/thumbs/700x700r/2017/12/20171207170236_1.jpg",
-    "7"
+    "7",
+    "remarks hier"
   ),
   new Character(
     "6",
@@ -54,9 +66,10 @@ export const CHARACTERS = [
     "Nicole",
     "Tine Embrechts",
     "https://img.static-rmg.be/a/view/q100/w900/h600/2106760/tinee-png.png",
-    "3"
+    "3",
+    "remarks hier"
   ),
-  new Character("7", "3", "Bob", "Man?", "", "15"),
+  new Character("7", "3", "Bob", "Man?", "", "15", "remarks hier"),
 ];
 export const LOCATIONS = [
   new Location("1", "1", "Space"),

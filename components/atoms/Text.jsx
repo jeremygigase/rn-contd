@@ -21,12 +21,12 @@ export const TextBold = (props) => {
 
 const styles = StyleSheet.create({
   light: {
-    fontFamily: "roboto-light",
+    //fontFamily: "roboto-light",
   },
   regular: {
-    fontFamily: "roboto-regular",
+    //fontFamily: "roboto-regular",
   },
   bold: {
-    fontFamily: "roboto-bold",
+    //fontFamily: "roboto-bold",
   },
 });

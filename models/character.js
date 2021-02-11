@@ -5,7 +5,8 @@ class Character {
     characterName,
     actorName,
     pictureFilename,
-    callsheetNumber
+    callsheetNumber,
+    remarks
   ) {
     this.id = id;
     this.projectId = projectId;
@@ -13,6 +14,7 @@ class Character {
     this.actorName = actorName;
     this.pictureFilename = pictureFilename;
     this.callsheetNumber = callsheetNumber;
+    this.remarks = remarks;
   }
 }
 

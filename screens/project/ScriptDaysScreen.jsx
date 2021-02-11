@@ -44,8 +44,6 @@ const ScriptDaysScreen = (props) => {
       />
     );
   }
-  // geeft ook undefined als je er gewoon op klikt
-  //console.log(selectedScriptDays);
 
   const renderProjectItem = (itemData) => {
     return (

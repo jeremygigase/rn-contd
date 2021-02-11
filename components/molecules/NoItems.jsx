@@ -9,8 +9,6 @@ import { NoIcons } from "_assets";
 const NoItems = ({ color, segName, icon }) => {
   const [clicked, setClicked] = useState(false);
 
-  console.log(NoIcons[icon]);
-
   let button = (
     <TouchableComponent
       style={[styles.addButton, { borderColor: color }]}

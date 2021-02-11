@@ -27,8 +27,6 @@ const ScriptDayDetailScreen = (props) => {
     })
   );
 
-  console.log(selectedScenes);
-
   const { name } = selectedScriptDay[0];
 
   const renderProjectItem = (itemData) => {

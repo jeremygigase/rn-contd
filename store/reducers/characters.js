@@ -1,16 +1,82 @@
 import { CHARACTERS } from "_data/dummy-data";
-import { ADD_TO_LIST, SET_FILTERS } from "_actions/characters";
+import {
+  DELETE_CHARACTER,
+  CREATE_CHARACTER,
+  UPDATE_CHARACTER,
+  SET_CHARACTERS,
+} from "_actions/characters";
+import Character from "_models/character";
 
 const initialState = {
   characters: CHARACTERS,
-  //userProjects: PROJECTS.filter(pro => pro.ownerId === 'u1')
+  projectCharacters: CHARACTERS.filter((char) => char.projectId === "3"),
 };
 
-const charactersReducer = (state = initialState, action) => {
+// id,
+// projectId,
+// characterName,
+// actorName,
+// pictureFilename,
+// callsheetNumber
+// remarks
+
+export default (state = initialState, action) => {
   switch (action.type) {
-    default:
-      return state;
-  }
-};
+    case SET_CHARACTERS:
+      return {
+        characters: action.characters,
+        projectCharacters: characters.filter((char) => char.projectId === "3"),
+      };
+    case CREATE_CHARACTER:
+      const newCharacter = new Character(
+        action.characterData.id,
+        "3",
+        action.characterData.characterName,
+        action.characterData.actorName,
+        action.characterData.pictureFilename,
+        action.characterData.callsheetNumber,
+        action.characterData.remarks
+      );
+      return {
+        ...state,
+        characters: state.characters.concat(newCharacter),
+        projectCharacters: state.projectCharacters.concat(newCharacter),
+      };
+    case UPDATE_CHARACTER:
+      const characterIndex = state.projectCharacters.findIndex(
+        (proj) => proj.id === action.cid
+      );
 
-export default charactersReducer;
+      const updatedCharacter = new Character(
+        action.cid,
+        state.projectCharacters[characterIndex].projectId,
+        action.characterData.characterName,
+        action.characterData.actorName,
+        action.characterData.pictureFilename,
+        action.characterData.callsheetNumber,
+        action.characterData.remarks
+      );
+      //console.log(updatedCharacter);
+      const updatedProjectCharacters = [...state.projectCharacters];
+      updatedProjectCharacters[characterIndex] = updatedCharacter;
+      const allCharactersIndex = state.characters.findIndex(
+        (char) => char.id === action.cid
+      );
+      const updatedAllCharacters = [...state.characters];
+      updatedAllCharacters[allCharactersIndex] = updatedCharacter;
+      return {
+        ...state,
+        characters: updatedAllCharacters,
+        projectCharacters: updatedProjectCharacters,
+      };
+    case DELETE_CHARACTER:
+      return {
+        ...state,
+        projectCharacters: state.projectCharacters.filter(
+          (proj) => proj.id !== action.cid
+        ),
+        characters: state.characters.filter((char) => char.id !== action.cid),
+      };
+  }
+  return state;
+};

@@ -1,25 +1,35 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 //Assets
-import { Icons } from "_assets";
+import { EditCharacterModal } from "_organisms";
+
+function getModal(type, id) {
+  switch (type) {
+    case "project":
+      return <EditCharacterModal id={id} />;
+    case "character":
+      return <EditCharacterModal id={id} />;
+    case "scene":
+      return <EditCharacterModal id={id} />;
+    case "location":
+      return <EditCharacterModal id={id} />;
+    case "script day":
+      return <EditCharacterModal id={id} />;
+  }
+}
 
 const DetailHeader = (props) => {
-  const { title, color, added } = props;
+  const { title, color, added, type, id } = props;
+  const modal = getModal(type, id);
+
   return (
     <View style={styles.header}>
       <View style={styles.headerTitleContainer}>
         <View style={[styles.headerTitle, { backgroundColor: color }]}>
           <Text style={[styles.title, { color: "white" }]}>{title}</Text>
         </View>
-        <Image
-          source={Icons["edit"]}
-          style={{
-            width: 20,
-            height: 20,
-            marginLeft: "16%",
-          }}
-        />
+        {modal}
       </View>
       <View style={styles.date}>
         <Text>{added}</Text>

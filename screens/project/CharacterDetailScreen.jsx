@@ -1,6 +1,6 @@
 //Packages
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, FlatList, View } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 // Components
@@ -57,13 +57,14 @@ const CharacterDetailScreen = (props) => {
     characterName,
     pictureFilename,
   } = selectedCharacter[0];
-
   return (
     <Main style={styles.main}>
       <DetailHeader
         title={callsheetNumber + ". " + characterName}
         color={Colors.characters}
         added={"Added on xx/xx/xxxx by member x"}
+        type={"character"}
+        id={selectedCharacter[0].id}
       />
       <View style={styles.characterContainer}>
         <View

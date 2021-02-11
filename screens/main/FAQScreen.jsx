@@ -24,10 +24,6 @@ const FAQScreen = () => {
     if (!submit) {
       setSubmit(true);
       alert("submitted");
-      //check email and reamrk entered
-      //validate email
-      console.log(email);
-      console.log(remarkText);
     } else {
       alert("already submitted");
     }

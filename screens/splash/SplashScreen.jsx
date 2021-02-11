@@ -9,18 +9,16 @@ const SplashScreen = (props) => {
       style={{
         flex: 1,
         backgroundColor: "#ffffff",
-      }}
-    >
+      }}>
       <LottieView
         source={require("_assets/animations/splash.json")}
         autoPlay
         loop={false}
         speed={2}
         onAnimationFinish={() => {
-          console.log("Animation Finished!");
           props.navigation.replace("Home");
         }}
-      /> 
+      />
     </View>
   );
 };

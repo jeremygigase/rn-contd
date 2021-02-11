@@ -46,7 +46,6 @@ function getActiveScreenColor(route) {
 }
 
 const ProjectNav = (props) => {
-  console.log(Colors);
   return (
     <Tab.Navigator
       initialRouteName='Project'

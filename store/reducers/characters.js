@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
       };
     case CREATE_CHARACTER:
       const newCharacter = new Character(
-        action.characterData.id,
+        new Date().toString(),
         "3",
         action.characterData.characterName,
         action.characterData.actorName,
@@ -37,6 +37,7 @@ export default (state = initialState, action) => {
         action.characterData.callsheetNumber,
         action.characterData.remarks
       );
+      console.log(newCharacter);
       return {
         ...state,
         characters: state.characters.concat(newCharacter),

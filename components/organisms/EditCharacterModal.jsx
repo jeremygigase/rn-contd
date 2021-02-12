@@ -136,6 +136,7 @@ const EditCharacterModal = (props) => {
       ]);
       return;
     }
+    console.log(formState.formIsValid);
     if (editedCharacter) {
       dispatch(
         characterActions.updateCharacter(
@@ -156,7 +157,13 @@ const EditCharacterModal = (props) => {
           formState.inputValues.callsheetNumber,
           formState.inputValues.remarks
         )
-      );
+      ),
+        (formState.inputValues.characterName = ""),
+        (formState.inputValues.actorName = ""),
+        (formState.inputValues.pictureFilename = ""),
+        (formState.inputValues.callsheetNumber = ""),
+        (formState.inputValues.remarks = ""),
+        (formState.formIsValid = false);
     }
     setModalVisible(!modalVisible);
   }, [dispatch, props.id, formState]);
@@ -179,6 +186,32 @@ const EditCharacterModal = (props) => {
     [dispatchFormState]
   );
 
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Are you sure?",
+      "Do you really want to delete this character?",
+      [
+        {
+          text: "No",
+          onPress: () => {
+            console.log("Cancel Pressed");
+          },
+          style: "default",
+        },
+        {
+          text: "Yes",
+          style: "destructive",
+          onPress: () => {
+            console.log("OK Pressed");
+            props.navigation.navigate("Characters Overview");
+            dispatch(characterActions.deleteCharacter(props.id));
+            setModalVisible(!modalVisible);
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  console.log(props);
   return (
     <>
       <Pressable
@@ -186,13 +219,7 @@ const EditCharacterModal = (props) => {
         style={{
           marginLeft: "4%",
         }}>
-        <Image
-          source={Icons["edit"]}
-          style={{
-            width: 20,
-            height: 20,
-          }}
-        />
+        {props.children}
       </Pressable>
 
       <Modal
@@ -212,7 +239,12 @@ const EditCharacterModal = (props) => {
               <Text style={styles.closeIcon}>X</Text>
             </Pressable>
             <View style={styles.editInfoContainer}>
-              <Text style={styles.title}>Edit Character</Text>
+              {editedCharacter ? (
+                <Text style={styles.title}>Edit Character</Text>
+              ) : (
+                <Text style={styles.title}>Add Character</Text>
+              )}
+
               <View style={styles.editInfo}>
                 <Input
                   id={"callsheetNumber"}
@@ -286,6 +318,13 @@ const EditCharacterModal = (props) => {
                 </Pressable>
               </View>
             </View>
+            {editedCharacter && (
+              <Pressable
+                onPress={createTwoButtonAlert}
+                style={styles.deleteButton}>
+                <Text style={styles.closeIcon}>DELETE</Text>
+              </Pressable>
+            )}
           </View>
         </View>
       </Modal>
@@ -340,5 +379,15 @@ const styles = StyleSheet.create({
     marginTop: 16,
     padding: 8,
     borderRadius: 16,
+  },
+  deleteButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "red",
+    position: "absolute",
+    right: 16,
+    bottom: 16,
+    width: 80,
+    height: 32,
   },
 });

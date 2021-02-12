@@ -1,6 +1,6 @@
 //Packages
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 // Components
@@ -19,6 +19,8 @@ import Colors from "_constants/Colors";
 
 //Assets
 import { Icons } from "_assets";
+
+import * as characterActions from "_store/actions/characters";
 const CharacterDetailScreen = (props) => {
   //Get character with param id
   const selectedCharacter = useSelector((state) =>
@@ -26,12 +28,13 @@ const CharacterDetailScreen = (props) => {
       (char) => char.id === props.route.params.id
     )
   );
+  const { navigation } = props;
 
   const { icon } = props.route.params;
 
   const selectedMTM = useSelector((state) =>
     state.scenesCharacters.scenesCharacters.filter(
-      (sceneCharacter) => sceneCharacter.characterId === selectedCharacter[0].id
+      (sceneCharacter) => sceneCharacter.characterId === props.route.params.id
     )
   );
 
@@ -51,12 +54,28 @@ const CharacterDetailScreen = (props) => {
     })
   );
 
-  const {
-    actorName,
-    callsheetNumber,
-    characterName,
-    pictureFilename,
-  } = selectedCharacter[0];
+  let actorName = null;
+  let callsheetNumber = null;
+  let characterName = null;
+  let pictureFilename = null;
+  let remarks = null;
+
+  if (selectedCharacter[0]) {
+    actorName = selectedCharacter[0].actorName;
+    callsheetNumber = selectedCharacter[0].callsheetNumber;
+    characterName = selectedCharacter[0].characterName;
+    pictureFilename = selectedCharacter[0].pictureFilename;
+    remarks = selectedCharacter[0].remarks;
+  }
+
+  // const {
+  //   actorName,
+  //   callsheetNumber,
+  //   characterName,
+  //   pictureFilename,
+  //   remarks,
+  // } = selectedCharacter[0];
+
   return (
     <Main style={styles.main}>
       <DetailHeader
@@ -64,7 +83,18 @@ const CharacterDetailScreen = (props) => {
         color={Colors.characters}
         added={"Added on xx/xx/xxxx by member x"}
         type={"character"}
-        id={selectedCharacter[0].id}
+        id={props.route.params.id}
+        //hier ligt het probleem
+        navigation={navigation}
+        button={
+          <Image
+            source={Icons["edit"]}
+            style={{
+              width: 20,
+              height: 20,
+            }}
+          />
+        }
       />
       <View style={styles.characterContainer}>
         <View
@@ -105,7 +135,7 @@ const CharacterDetailScreen = (props) => {
               navigation={props.navigation}
               text={"script days"}
             />
-            <DetailRemarks color={Colors.characters} />
+            <DetailRemarks color={Colors.characters} text={remarks} />
           </View>
         </ScrollView>
       </View>

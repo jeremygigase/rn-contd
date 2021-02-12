@@ -51,14 +51,15 @@ const CharactersScreen = (props) => {
       <SegmentFilter props={props} text={"characters"} screen={"Characters"} />
     );
   }
-
+  const btnText = "+ Add Character";
   return (
     <View>
       <ProjectHeader
         color={Colors.characters}
         headerText={"Characters"}
-        btnText={"+Add Character"}
         scnBtn={1}
+        type={"character"}
+        button={<Text style={styles.addButtonText}> {btnText} </Text>}
       />
       <Main style={styles.scrollView}>
         {name}

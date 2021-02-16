@@ -56,8 +56,8 @@ const LocationsScreen = (props) => {
       <ProjectHeader
         color={Colors.locations}
         headerText={"Locations"}
-        btnText={"+Add Location"}
-        scnBtn={1}
+        type={"location"}
+        scnBtn
       />
       <Main style={styles.scrollView}>
         {name}

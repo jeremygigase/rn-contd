@@ -21,7 +21,6 @@ import { Input } from "_atoms";
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
 const formReducer = (state, action) => {
-  console.log(state);
   if (action.type === FORM_INPUT_UPDATE) {
     const updatedValues = {
       ...state.inputValues,
@@ -136,7 +135,6 @@ const EditCharacterModal = (props) => {
       ]);
       return;
     }
-    console.log(formState.formIsValid);
     if (editedCharacter) {
       dispatch(
         characterActions.updateCharacter(
@@ -158,6 +156,8 @@ const EditCharacterModal = (props) => {
           formState.inputValues.remarks
         )
       ),
+        //tijdelijke oplossing beter render skippen
+        //shouldComponentUpdate
         (formState.inputValues.characterName = ""),
         (formState.inputValues.actorName = ""),
         (formState.inputValues.pictureFilename = ""),
@@ -202,7 +202,6 @@ const EditCharacterModal = (props) => {
           text: "Yes",
           style: "destructive",
           onPress: () => {
-            console.log("OK Pressed");
             props.navigation.navigate("Characters Overview");
             dispatch(characterActions.deleteCharacter(props.id));
             setModalVisible(!modalVisible);
@@ -211,14 +210,9 @@ const EditCharacterModal = (props) => {
       ],
       { cancelable: false }
     );
-  console.log(props);
   return (
     <>
-      <Pressable
-        onPress={() => setModalVisible(true)}
-        style={{
-          marginLeft: "4%",
-        }}>
+      <Pressable style={styles.addButton} onPress={() => setModalVisible(true)}>
         {props.children}
       </Pressable>
 
@@ -389,5 +383,8 @@ const styles = StyleSheet.create({
     bottom: 16,
     width: 80,
     height: 32,
+  },
+  addButton: {
+    width: "32%",
   },
 });

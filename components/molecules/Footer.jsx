@@ -1,15 +1,18 @@
 //Packages
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+
+import { Icons } from "_assets";
 
 const Footer = () => {
   return (
     <View style={styles.footer}>
       <Text style={styles.logo}>CONT'D</Text>
       <Text style={styles.tagLine}>Made by crew for crew</Text>
-      <Text style={styles.companyName}>
+      <Image source={Icons["logo"]} style={styles.icon} />
+      {/* <Text style={styles.companyName}>
         Super Ultra Corporate Information Technologies inc©
-      </Text>
+      </Text> */}
     </View>
   );
 };
@@ -19,7 +22,7 @@ export default Footer;
 const styles = StyleSheet.create({
   footer: {
     width: "80%",
-    marginBottom: "4%",
+    marginBottom: "32%",
     // Holds Footer at the bottom of the screen
     position: "absolute",
     bottom: 0,
@@ -37,5 +40,10 @@ const styles = StyleSheet.create({
     fontSize: 8,
     marginBottom: 8,
     fontWeight: "bold",
+  },
+  icon: {
+    resizeMode: "contain",
+    width: "100%",
+    height: "100%",
   },
 });

@@ -17,6 +17,8 @@ import Colors from "_constants/Colors";
 
 import { CharacterIcons } from "_assets";
 
+//To Do fix Add Button
+
 const CharactersScreen = (props) => {
   let selectedCharacters = useSelector((state) =>
     state.characters.characters.filter(
@@ -57,9 +59,8 @@ const CharactersScreen = (props) => {
       <ProjectHeader
         color={Colors.characters}
         headerText={"Characters"}
-        scnBtn={1}
+        scnBtn
         type={"character"}
-        button={<Text style={styles.addButtonText}> {btnText} </Text>}
       />
       <Main style={styles.scrollView}>
         {name}

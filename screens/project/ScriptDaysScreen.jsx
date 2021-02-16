@@ -68,8 +68,8 @@ const ScriptDaysScreen = (props) => {
       <ProjectHeader
         color={Colors.scriptDays}
         headerText={"Script Days"}
-        btnText={"+Add Script Day"}
-        scnBtn={1}
+        type={"script days"}
+        scnBtn
       />
       <Main style={styles.scrollView}>
         {name}

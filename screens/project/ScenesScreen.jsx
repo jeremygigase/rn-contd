@@ -44,7 +44,7 @@ const ScenesScreen = (props, { item, route, navigation }) => {
       <ProjectHeader
         color={Colors.scenes}
         headerText={"Scenes"}
-        btnText={"+Add Scene"}
+        type={"scene"}
       />
       <Main style={styles.scrollView}>
         {name}

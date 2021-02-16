@@ -87,13 +87,18 @@ const CharacterDetailScreen = (props) => {
         //hier ligt het probleem
         navigation={navigation}
         button={
-          <Image
-            source={Icons["edit"]}
+          <View
             style={{
-              width: 20,
-              height: 20,
-            }}
-          />
+              marginLeft: 16,
+            }}>
+            <Image
+              source={Icons["edit"]}
+              style={{
+                width: 20,
+                height: 20,
+              }}
+            />
+          </View>
         }
       />
       <View style={styles.characterContainer}>

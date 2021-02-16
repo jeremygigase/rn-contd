@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   deleteButton: {
-    marginLeft: "28%",
+    marginLeft: "4%",
   },
 });

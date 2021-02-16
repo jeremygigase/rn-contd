@@ -4,6 +4,7 @@ export const Icons = {
   settings: require("../assets/icons/icon_settings_black_3.png"),
   contact: require("../assets/icons/icon_contact_black_3.png"),
   faq: require("../assets/icons/icon_faq_black_1.png"),
+  logo: require("./images/general/logo.png"),
   logout: require("../assets/icons/icon_logout_2.png"),
   tabHomeOn: require("../assets/icons/navhome_on_1.png"),
   tabHomeOff: require("../assets/icons/navhome_off_1.png"),

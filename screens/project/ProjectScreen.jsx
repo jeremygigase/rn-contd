@@ -59,8 +59,8 @@ const ProjectScreen = ({ route, navigation }) => {
       <ProjectHeader
         color={Colors.project}
         headerText={selectedProject[0].name}
-        btnText={"+Invite a member"}
-        scnBtn={1}
+        scnBtn
+        type={"project"}
       />
       <Main>
         <View style={styles.segments}>

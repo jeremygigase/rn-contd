@@ -3,49 +3,55 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 //Components
-import { EditCharacterModal } from "_organisms";
+import {
+  CharacterModal,
+  LocationModal,
+  ProjectModal,
+  SceneModal,
+  ScriptDayModal,
+} from "_organisms";
 
 function getModal(type, id, color) {
   switch (type) {
     case "project":
       return (
-        <EditCharacterModal id={id}>
+        <ProjectModal id={id}>
           <View style={{ ...styles.addButton, backgroundColor: color }}>
             <Text style={styles.addButtonText}>+ Invite a member</Text>
           </View>
-        </EditCharacterModal>
+        </ProjectModal>
       );
     case "character":
       return (
-        <EditCharacterModal id={id}>
+        <CharacterModal id={id}>
           <View style={{ ...styles.addButton, backgroundColor: color }}>
             <Text style={styles.addButtonText}>+ Add Character </Text>
           </View>
-        </EditCharacterModal>
+        </CharacterModal>
       );
     case "scene":
       return (
-        <EditCharacterModal id={id}>
+        <SceneModal id={id}>
           <View style={{ ...styles.addButton, backgroundColor: color }}>
             <Text style={styles.addButtonText}>+ Add Scene </Text>
           </View>
-        </EditCharacterModal>
+        </SceneModal>
       );
     case "location":
       return (
-        <EditCharacterModal id={id}>
+        <LocationModal id={id}>
           <View style={{ ...styles.addButton, backgroundColor: color }}>
             <Text style={styles.addButtonText}>+ Add Location</Text>
           </View>
-        </EditCharacterModal>
+        </LocationModal>
       );
     case "script day":
       return (
-        <EditCharacterModal id={id}>
+        <ScriptDayModal id={id}>
           <View style={{ ...styles.addButton, backgroundColor: color }}>
             <Text style={styles.addButtonText}>+ Add Script Day </Text>
           </View>
-        </EditCharacterModal>
+        </ScriptDayModal>
       );
   }
 }
@@ -60,11 +66,11 @@ const ProjectHeader = ({ headerText, scnBtn, type, color }) => {
       <View style={styles.buttons}>
         {modal}
         {scnBtn && (
-          <EditCharacterModal id={id}>
+          <CharacterModal id={id}>
             <View style={styles.addButtonScene}>
               <Text style={styles.addButtonText}>+ Add Scene </Text>
             </View>
-          </EditCharacterModal>
+          </CharacterModal>
         )}
       </View>
     </View>

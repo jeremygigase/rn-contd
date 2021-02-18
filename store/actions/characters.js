@@ -1,5 +1,3 @@
-//import Character from "_models/character";
-
 export const DELETE_CHARACTER = "DELETE_CHARACTER";
 export const CREATE_CHARACTER = "CREATE_CHARACTER";
 export const UPDATE_CHARACTER = "UPDATE_CHARACTER";

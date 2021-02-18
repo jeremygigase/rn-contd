@@ -9,8 +9,8 @@ const Footer = () => {
     <View style={styles.footer}>
       <Text style={styles.logo}>CONT'D</Text>
       <Text style={styles.tagLine}>Made by crew for crew</Text>
-      <Image source={Icons["logo"]} style={styles.icon} />
-      {/* <Text style={styles.companyName}>
+      {/* <Image source={Icons["logo"]} style={styles.icon} />
+      <Text style={styles.companyName}>
         Super Ultra Corporate Information Technologies inc©
       </Text> */}
     </View>
@@ -22,7 +22,7 @@ export default Footer;
 const styles = StyleSheet.create({
   footer: {
     width: "80%",
-    marginBottom: "32%",
+    //marginBottom: "2%",
     // Holds Footer at the bottom of the screen
     position: "absolute",
     bottom: 0,

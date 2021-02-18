@@ -1,68 +1,27 @@
 import React, { useState, useEffect, useCallback, useReducer } from "react";
-import {
-  StyleSheet,
-  Image,
-  View,
-  Pressable,
-  Modal,
-  Text,
-  Alert,
-} from "react-native";
-
+import { StyleSheet, View, Pressable, Modal, Text, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-
-import { Icons } from "_assets";
 
 import * as characterActions from "_store/actions/characters";
 
 // components
 import { Input } from "_atoms";
 
+// Helpers
+import formReducer from "_helpers/formReducer";
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
-const formReducer = (state, action) => {
-  if (action.type === FORM_INPUT_UPDATE) {
-    const updatedValues = {
-      ...state.inputValues,
-      [action.input]: action.value,
-    };
-    const updatedValidities = {
-      ...state.inputValidities,
-      [action.input]: action.isValid,
-    };
-    let updatedFormIsValid = true;
-    for (const key in updatedValidities) {
-      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
-    }
-    return {
-      formIsValid: updatedFormIsValid,
-      inputValidities: updatedValidities,
-      inputValues: updatedValues,
-    };
-  }
-
-  return state;
-};
-
-const EditCharacterModal = (props) => {
+const LocationModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  //const prodId = props.navigation.getParam("productId");
   const editedCharacter = useSelector((state) =>
     state.characters.characters.find((char) => char.id === props.id)
   );
 
-  // id,
-  // projectId,
-  // characterName,
-  // actorName,
-  // pictureFilename,
-  // callsheetNumber
-
   const dispatch = useDispatch();
+  // id, projectId,characterName,actorName,pictureFilename,callsheetNumber
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -87,46 +46,6 @@ const EditCharacterModal = (props) => {
       Alert.alert("An error occurred!", error, [{ text: "Okay" }]);
     }
   }, [error]);
-
-  // const submitHandler = useCallback(async () => {
-  //   if (!formState.formIsValid) {
-  //     Alert.alert("Wrong input!", "Please check the errors in the form.", [
-  //       { text: "Okay" },
-  //     ]);
-  //     return;
-  //   }
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     if (editedCharacter) {
-  //       await dispatch(
-  //         characterActions.updateCharacter(
-  //           props.id,
-  //           formState.inputValues.characterName,
-  //           formState.inputValues.actorName,
-  //           formState.inputValues.pictureFilename,
-  //           formState.inputValues.callsheetNumber
-  //           //formState.inputValues.remarks
-  //         )
-  //       );
-  //     } else {
-  //       await dispatch(
-  //         characterActions.createCharacter(
-  //           formState.inputValues.characterName,
-  //           formState.inputValues.actorName,
-  //           formState.inputValues.pictureFilename,
-  //           formState.inputValues.callsheetNumber
-  //           //formState.inputValues.remarks
-  //         )
-  //       );
-  //     }
-  //     //props.navigation.goBack();
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-
-  //   setIsLoading(false);
-  // }, [dispatch, props.id, formState]);
 
   const submitHandler = useCallback(() => {
     if (!formState.formIsValid) {
@@ -204,12 +123,12 @@ const EditCharacterModal = (props) => {
           onPress: () => {
             props.navigation.navigate("Characters Overview");
             dispatch(characterActions.deleteCharacter(props.id));
-            setModalVisible(!modalVisible);
           },
         },
       ],
       { cancelable: false }
     );
+
   return (
     <>
       <Pressable style={styles.addButton} onPress={() => setModalVisible(true)}>
@@ -326,7 +245,7 @@ const EditCharacterModal = (props) => {
   );
 };
 
-export default EditCharacterModal;
+export default LocationModal;
 
 const styles = StyleSheet.create({
   modalView: {

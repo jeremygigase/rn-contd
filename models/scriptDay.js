@@ -1,8 +1,9 @@
 class ScriptDay {
-  constructor(id, projectId, name) {
+  constructor(id, projectId, name, remarks) {
     this.id = id;
     this.projectId = projectId;
     this.name = name;
+    this.remarks = remarks;
   }
 }
 

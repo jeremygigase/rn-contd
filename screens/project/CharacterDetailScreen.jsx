@@ -20,7 +20,6 @@ import Colors from "_constants/Colors";
 //Assets
 import { Icons } from "_assets";
 
-import * as characterActions from "_store/actions/characters";
 const CharacterDetailScreen = (props) => {
   //Get character with param id
   const selectedCharacter = useSelector((state) =>
@@ -86,20 +85,7 @@ const CharacterDetailScreen = (props) => {
         id={props.route.params.id}
         //hier ligt het probleem
         navigation={navigation}
-        button={
-          <View
-            style={{
-              marginLeft: 16,
-            }}>
-            <Image
-              source={Icons["edit"]}
-              style={{
-                width: 20,
-                height: 20,
-              }}
-            />
-          </View>
-        }
+        // button={}
       />
       <View style={styles.characterContainer}>
         <View

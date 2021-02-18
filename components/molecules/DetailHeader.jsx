@@ -2,29 +2,35 @@ import React from "react";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
 
 //Assets
-import { EditCharacterModal } from "_organisms";
+import {
+  CharacterModal,
+  LocationModal,
+  ProjectModal,
+  SceneModal,
+  ScriptDayModal,
+} from "_organisms";
 import * as characterActions from "_store/actions/characters";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { CommonActions } from "@react-navigation/native";
 
 function getModal(type, id, navigation, button) {
   switch (type) {
     case "project":
-      return <EditCharacterModal id={id} navigation={navigation} />;
+      return <ProjectModal id={id} navigation={navigation} />;
     case "character":
       return (
-        <EditCharacterModal id={id} navigation={navigation}>
+        <CharacterModal id={id} navigation={navigation}>
           {button}
-        </EditCharacterModal>
+        </CharacterModal>
       );
     case "scene":
-      return <EditCharacterModal id={id} navigation={navigation} />;
+      return <SceneModal id={id} navigation={navigation} />;
     case "location":
-      return <EditCharacterModal id={id} navigation={navigation} />;
+      return <LocationModal id={id} navigation={navigation} />;
     case "script day":
-      return <EditCharacterModal id={id} navigation={navigation} />;
+      return <ScriptDayModal id={id} navigation={navigation} />;
   }
 }
 

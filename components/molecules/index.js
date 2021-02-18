@@ -18,3 +18,4 @@ export { default as DetailImage } from "./DetailImage";
 export { default as DetailRemarks } from "./DetailRemarks";
 export { default as DetailSegmentItem } from "./DetailSegmentItem";
 export { default as DetailTitleSegmentItem } from "./DetailTitleSegmentItem";
+export { default as TwoButtonDeleteAlert } from "./TwoButtonDeleteAlert";

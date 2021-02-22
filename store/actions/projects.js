@@ -27,21 +27,12 @@ export const createProject = (name, created, creator, color, imageFilename) => {
   };
 };
 
-export const updateProject = (
-  id,
-  name,
-  created,
-  creator,
-  color,
-  imageFilename
-) => {
+export const updateProject = (id, name, color, imageFilename) => {
   return {
     type: UPDATE_PROJECT,
     pid: id,
     projectData: {
       name,
-      created,
-      creator,
       color,
       imageFilename,
     },

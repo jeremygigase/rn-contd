@@ -57,7 +57,6 @@ export default (state = initialState, action) => {
         action.characterData.callsheetNumber,
         action.characterData.remarks
       );
-      //console.log(updatedCharacter);
       const updatedProjectCharacters = [...state.projectCharacters];
       updatedProjectCharacters[characterIndex] = updatedCharacter;
       const allCharactersIndex = state.characters.findIndex(

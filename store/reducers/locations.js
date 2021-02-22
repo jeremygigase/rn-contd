@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
 
       const updatedLocation = new Location(
         action.lid,
-        state.projectlocations[locationIndex].projectId,
+        state.projectLocations[locationIndex].projectId,
         action.locationData.name,
         action.locationData.remarks
       );

@@ -1,81 +1,83 @@
-import { CHARACTERS } from "_data/dummy-data";
+import { SCENES } from "_data/dummy-data";
 import {
-  DELETE_CHARACTER,
-  CREATE_CHARACTER,
-  UPDATE_CHARACTER,
-  SET_CHARACTERS,
-} from "_actions/characters";
-import Character from "_models/character";
+  DELETE_SCENE,
+  CREATE_SCENE,
+  UPDATE_SCENE,
+  SET_SCENES,
+} from "_actions/scenes";
+import SCENE from "_models/scene";
 
 const initialState = {
-  characters: CHARACTERS,
-  projectCharacters: CHARACTERS.filter((char) => char.projectId === "3"),
+  scenes: SCENES,
+  projectScenes: SCENES.filter((char) => char.projectId === "3"),
 };
-
-//id,
-// name,
+// id,
+// projectId,
+// scriptDayId,
+// locationId,
 // created,
-// creator,
-// color,
-// imageFilename
+// sceneNumber,
+// remarks,
+// date;
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_CHARACTERS:
+    case SET_SCENES:
       return {
-        characters: action.characters,
-        projectCharacters: characters.filter((char) => char.projectId === "3"),
+        scenes: action.scenes,
+        projectScenes: scenes.filter((sce) => sce.projectId === "3"),
       };
-    case CREATE_CHARACTER:
-      const newCharacter = new Character(
+    case CREATE_SCENE:
+      const newScene = new Scene(
         new Date().toString(),
         "3",
-        action.characterData.characterName,
-        action.characterData.actorName,
-        action.characterData.pictureFilename,
-        action.characterData.callsheetNumber,
-        action.characterData.remarks
+        "2", //ScriptDay
+        "2", // location
+        new Date().toString(),
+        action.sceneData.sceneNumber,
+        action.sceneData.remarks,
+        action.sceneData.date
       );
-      console.log(newCharacter);
+      console.log(newSCENE);
       return {
         ...state,
-        characters: state.characters.concat(newCharacter),
-        projectCharacters: state.projectCharacters.concat(newCharacter),
+        scenes: state.scenes.concat(newScene),
+        projectScenes: state.projectScenes.concat(newScene),
       };
-    case UPDATE_CHARACTER:
-      const characterIndex = state.projectCharacters.findIndex(
-        (proj) => proj.id === action.cid
+    case UPDATE_SCENE:
+      const sceneIndex = state.projectScenes.findIndex(
+        (proj) => proj.id === action.sid
       );
 
-      const updatedCharacter = new Character(
-        action.cid,
-        state.projectCharacters[characterIndex].projectId,
-        action.characterData.characterName,
-        action.characterData.actorName,
-        action.characterData.pictureFilename,
-        action.characterData.callsheetNumber,
-        action.characterData.remarks
+      const updatedScene = new Scene(
+        action.sid,
+        state.projectScenes[sceneIndex].projectId,
+        action.sceneData.scriptDayId,
+        action.sceneData.locationId,
+        action.sceneData.created,
+        action.sceneData.sceneNumber,
+        action.sceneData.remarks,
+        action.sceneData.date
       );
-      //console.log(updatedCharacter);
-      const updatedProjectCharacters = [...state.projectCharacters];
-      updatedProjectCharacters[characterIndex] = updatedCharacter;
-      const allCharactersIndex = state.characters.findIndex(
-        (char) => char.id === action.cid
+      const updatedProjectScenes = [...state.projectScenes];
+      updatedProjectScenes[sceneIndex] = updatedScene;
+      const allScenesIndex = state.scenes.findIndex(
+        (sce) => sce.id === action.sid
       );
-      const updatedAllCharacters = [...state.characters];
-      updatedAllCharacters[allCharactersIndex] = updatedCharacter;
+      const updatedAllScenes = [...state.scenes];
+      updatedAllScenes[allScenesIndex] = updatedScene;
       return {
         ...state,
-        characters: updatedAllCharacters,
-        projectCharacters: updatedProjectCharacters,
+        scenes: updatedAllScenes,
+        projectScenes: updatedProjectScenes,
       };
-    case DELETE_CHARACTER:
+    case DELETE_SCENE:
       return {
         ...state,
-        projectCharacters: state.projectCharacters.filter(
-          (proj) => proj.id !== action.cid
+        projectScenes: state.projectCharacters.filter(
+          (proj) => proj.id !== action.sid
         ),
-        characters: state.characters.filter((char) => char.id !== action.cid),
+        scenes: state.scenes.filter((sce) => sce.id !== action.sid),
       };
   }
   return state;

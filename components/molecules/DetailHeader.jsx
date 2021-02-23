@@ -9,22 +9,24 @@ import {
   SceneModal,
   ScriptDayModal,
 } from "_organisms";
-import * as characterActions from "_store/actions/characters";
+import {
+  deleteCharacter,
+  deleteLocation,
+  deleteScene,
+  deleteProject,
+  deleteScriptDay,
+} from "_store/actions";
 
 import { useDispatch } from "react-redux";
 
 import { CommonActions } from "@react-navigation/native";
 
-function getModal(type, id, navigation, button) {
+function getModal(type, id, navigation) {
   switch (type) {
     case "project":
       return <ProjectModal id={id} navigation={navigation} />;
     case "character":
-      return (
-        <CharacterModal id={id} navigation={navigation}>
-          {button}
-        </CharacterModal>
-      );
+      return <CharacterModal id={id} navigation={navigation} />;
     case "scene":
       return <SceneModal id={id} navigation={navigation} />;
     case "location":
@@ -35,14 +37,29 @@ function getModal(type, id, navigation, button) {
 }
 
 const DetailHeader = (props) => {
-  const { title, color, added, type, id, navigation, button } = props;
-  const modal = getModal(type, id, navigation, button);
+  const { title, color, added, type, id, navigation } = props;
+  const modal = getModal(type, id, navigation);
   const dispatch = useDispatch();
+
+  function getDispatcher(type, id) {
+    switch (type) {
+      case "project":
+        return dispatch(deleteProject(id));
+      case "character":
+        return dispatch(deleteCharacter(id));
+      case "scene":
+        return dispatch(deleteScene(id));
+      case "location":
+        return dispatch(deleteLocation(id));
+      case "script day":
+        return dispatch(deleteScriptDay(id));
+    }
+  }
 
   const createTwoButtonAlert = () =>
     Alert.alert(
       "Are you sure?",
-      "Do you really want to delete this character?",
+      `Do you really want to delete this ${type}?`,
       [
         {
           text: "No",
@@ -55,7 +72,7 @@ const DetailHeader = (props) => {
           text: "Yes",
           style: "destructive",
           onPress: () => {
-            dispatch(characterActions.deleteCharacter(props.id));
+            getDispatcher(type, props.id);
             props.navigation.dispatch(CommonActions.goBack());
           },
         },

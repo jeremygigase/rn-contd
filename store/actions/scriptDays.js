@@ -23,12 +23,11 @@ export const createScriptDay = (projectId, name, remarks) => {
   };
 };
 
-export const updateScriptDay = (id, projectId, name, remarks) => {
+export const updateScriptDay = (id, name, remarks) => {
   return {
     type: UPDATE_SCRIPT_DAY,
     sid: id,
     scriptDayData: {
-      projectId,
       name,
       remarks,
     },

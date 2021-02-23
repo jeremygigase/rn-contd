@@ -83,9 +83,7 @@ const CharacterDetailScreen = (props) => {
         added={"Added on xx/xx/xxxx by member x"}
         type={"character"}
         id={props.route.params.id}
-        //hier ligt het probleem
         navigation={navigation}
-        // button={}
       />
       <View style={styles.characterContainer}>
         <View

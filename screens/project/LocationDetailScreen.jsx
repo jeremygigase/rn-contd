@@ -1,6 +1,6 @@
 //Packages
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, FlatList, View } from "react-native";
+import { StyleSheet, ScrollView, Image, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 // Components
@@ -39,7 +39,14 @@ const LocationDetailScreen = (props) => {
     })
   );
   const { icon } = props.route.params;
-  const { id, name } = selectedLocation[0];
+
+  let name = null;
+  let remarks = null;
+
+  if (selectedLocation[0]) {
+    name = selectedLocation[0].name;
+    remarks = selectedLocation[0].remarks;
+  }
 
   return (
     <Main style={styles.main}>
@@ -47,6 +54,9 @@ const LocationDetailScreen = (props) => {
         title={name + " id " + id}
         color={Colors.locations}
         added={"Added on xx/xx/xxxx by member x"}
+        type={"location"}
+        id={props.route.params.id}
+        navigation={props.navigation}
       />
       <View style={styles.characterContainer}>
         <View

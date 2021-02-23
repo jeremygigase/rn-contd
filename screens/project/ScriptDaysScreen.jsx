@@ -18,16 +18,20 @@ import Colors from "_constants/Colors";
 import { ScriptDayIcons } from "_assets";
 
 const ScriptDaysScreen = (props) => {
-  const selectedScenes = useSelector((state) =>
-    state.scenes.scenes.filter((scenes) => scenes.projectId === global.id)
-  );
+  // const selectedScenes = useSelector((state) =>
+  //   state.scenes.scenes.filter((scenes) => scenes.projectId === global.id)
+  // );
 
-  const scriptDaysIds = selectedScenes.map((scene) => scene.scriptDayId);
+  // const scriptDaysIds = selectedScenes.map((scene) => scene.scriptDayId);
+
+  // const allSelectedScriptDays = useSelector((state) =>
+  //   state.scriptDays.scriptDays.filter((sd) => {
+  //     return scriptDaysIds.includes(sd.id);
+  //   })
+  // );
 
   const allSelectedScriptDays = useSelector((state) =>
-    state.scriptDays.scriptDays.filter((sd) => {
-      return scriptDaysIds.includes(sd.id);
-    })
+    state.scriptDays.scriptDays.filter((scr) => scr.projectId === global.id)
   );
 
   let selectedScriptDays = allSelectedScriptDays;
@@ -68,7 +72,7 @@ const ScriptDaysScreen = (props) => {
       <ProjectHeader
         color={Colors.scriptDays}
         headerText={"Script Days"}
-        type={"script days"}
+        type={"script day"}
         scnBtn
       />
       <Main style={styles.scrollView}>

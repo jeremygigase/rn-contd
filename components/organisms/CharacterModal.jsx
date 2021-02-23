@@ -1,12 +1,23 @@
 import React, { useState, useEffect, useCallback, useReducer } from "react";
-import { StyleSheet, View, Pressable, Modal, Text, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Modal,
+  Text,
+  Alert,
+  Image,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as characterActions from "_store/actions/characters";
 
 // components
 import { Input } from "_atoms";
-import { DetailModal } from "_components";
+//import { DetailModal } from "_components";
+
+//Assets
+import { Icons } from "_assets";
 
 // Helpers
 import formReducer from "_helpers/formReducer";
@@ -101,7 +112,6 @@ const CharacterModal = (props) => {
         isValid: inputValidity,
         input: inputIdentifier,
       });
-      //console.log(inputValue);
     },
     [dispatchFormState]
   );
@@ -132,92 +142,143 @@ const CharacterModal = (props) => {
 
   return (
     <>
-      <DetailModal modalVisible={modalVisible}>
-        <View style={styles.editInfoContainer}>
-          {editedCharacter ? (
-            <Text style={styles.title}>Edit Character</Text>
-          ) : (
-            <Text style={styles.title}>Add Character</Text>
-          )}
+      {editedCharacter ? (
+        <Pressable
+          style={{
+            marginLeft: 16,
+            width: "24%",
+          }}
+          onPress={() => setModalVisible(true)}>
+          <View>
+            <Image
+              source={Icons["edit"]}
+              style={{
+                width: 20,
+                height: 20,
+              }}
+            />
+          </View>
+        </Pressable>
+      ) : (
+        <Pressable
+          style={{ ...styles.addButton, backgroundColor: props.color }}
+          onPress={() => setModalVisible(true)}>
+          <View
+            style={{
+              marginLeft: 16,
+            }}>
+            <Text style={styles.addButtonText}>+ Add Character</Text>
+          </View>
+        </Pressable>
+      )}
 
-          <View style={styles.editInfo}>
-            <Input
-              id={"callsheetNumber"}
-              label={"Callsheet Number"}
-              errorText='Please enter a valid callsheet number!'
-              keyboardType='decimal-pad'
-              //autoCapitalize='sentences'
-              //autoCorrect
-              returnKeyType='next'
-              initialValue={
-                editedCharacter ? editedCharacter.callsheetNumber : ""
-              }
-              initiallyValid={!!editedCharacter}
-              onInputChange={inputChangeHandler}
-              minLength={1}
-              maxLength={16}
-              required
-            />
-            <Input
-              id={"characterName"}
-              label={"Character Name"}
-              errorText='Please enter a valid character name!'
-              initialValue={
-                editedCharacter ? editedCharacter.characterName : ""
-              }
-              returnKeyType='next'
-              initiallyValid={!!editedCharacter}
-              onInputChange={inputChangeHandler}
-              minLength={1}
-              maxLength={48}
-              required
-            />
-            <Input
-              id={"pictureFilename"}
-              label={"Picture"}
-              errorText='Please enter a valid picture!'
-              initialValue={
-                editedCharacter ? editedCharacter.pictureFilename : ""
-              }
-              returnKeyType='next'
-              onInputChange={inputChangeHandler}
-              initiallyValid={!!editedCharacter}
-            />
-            <Input
-              id={"actorName"}
-              label={"Played by Actor Name"}
-              errorText='Please enter a valid actor name!'
-              initialValue={editedCharacter ? editedCharacter.actorName : ""}
-              initiallyValid={!!editedCharacter}
-              returnKeyType='next'
-              onInputChange={inputChangeHandler}
-              required
-            />
-            <Input
-              id={"remarks"}
-              label={"Remarks"}
-              errorText='Please enter a valid remark!'
-              multiline
-              initialValue={editedCharacter ? editedCharacter.remarks : ""}
-              initiallyValid={!!editedCharacter}
-              autoCapitalize='sentences'
-              autoCorrect
-              onInputChange={inputChangeHandler}
-              minLength={0}
-              maxLength={240}
-            />
-            {/* pass this to child or pass submit??? other things to finish now project header is fucked */}
-            <Pressable style={styles.submitButton} onPress={() => submit()}>
-              <Text>Submit</Text>
+      <Modal
+        animationType='fade'
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.modalView}>
+          <View style={styles.modal}>
+            <Pressable
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+              style={styles.closeButton}>
+              <Text style={styles.closeIcon}>X</Text>
             </Pressable>
+            <View style={styles.editInfoContainer}>
+              {editedCharacter ? (
+                <Text style={styles.title}>Edit Character</Text>
+              ) : (
+                <Text style={styles.title}>Add Character</Text>
+              )}
+
+              <View style={styles.editInfo}>
+                <Input
+                  id={"callsheetNumber"}
+                  label={"Callsheet Number"}
+                  errorText='Please enter a valid callsheet number!'
+                  keyboardType='decimal-pad'
+                  //autoCapitalize='sentences'
+                  //autoCorrect
+                  returnKeyType='next'
+                  initialValue={
+                    editedCharacter ? editedCharacter.callsheetNumber : ""
+                  }
+                  initiallyValid={!!editedCharacter}
+                  onInputChange={inputChangeHandler}
+                  minLength={1}
+                  maxLength={16}
+                  required
+                />
+                <Input
+                  id={"characterName"}
+                  label={"Character Name"}
+                  errorText='Please enter a valid character name!'
+                  initialValue={
+                    editedCharacter ? editedCharacter.characterName : ""
+                  }
+                  returnKeyType='next'
+                  initiallyValid={!!editedCharacter}
+                  onInputChange={inputChangeHandler}
+                  minLength={1}
+                  maxLength={48}
+                  required
+                />
+                <Input
+                  id={"pictureFilename"}
+                  label={"Picture"}
+                  errorText='Please enter a valid picture!'
+                  initialValue={
+                    editedCharacter ? editedCharacter.pictureFilename : ""
+                  }
+                  returnKeyType='next'
+                  onInputChange={inputChangeHandler}
+                  initiallyValid={!!editedCharacter}
+                />
+                <Input
+                  id={"actorName"}
+                  label={"Played by Actor Name"}
+                  errorText='Please enter a valid actor name!'
+                  initialValue={
+                    editedCharacter ? editedCharacter.actorName : ""
+                  }
+                  initiallyValid={!!editedCharacter}
+                  returnKeyType='next'
+                  onInputChange={inputChangeHandler}
+                  required
+                />
+                <Input
+                  id={"remarks"}
+                  label={"Remarks"}
+                  errorText='Please enter a valid remark!'
+                  multiline
+                  initialValue={editedCharacter ? editedCharacter.remarks : ""}
+                  initiallyValid={!!editedCharacter}
+                  autoCapitalize='sentences'
+                  autoCorrect
+                  onInputChange={inputChangeHandler}
+                  minLength={0}
+                  maxLength={240}
+                />
+                {/* pass this to child or pass submit??? other things to finish now project header is fucked */}
+                <Pressable style={styles.submitButton} onPress={() => submit()}>
+                  <Text>Submit</Text>
+                </Pressable>
+              </View>
+            </View>
+            {editedCharacter && (
+              <Pressable
+                onPress={createTwoButtonAlert}
+                style={styles.deleteButton}>
+                <Text style={styles.closeIcon}>DELETE</Text>
+              </Pressable>
+            )}
           </View>
         </View>
-        {editedCharacter && (
-          <Pressable onPress={createTwoButtonAlert} style={styles.deleteButton}>
-            <Text style={styles.closeIcon}>DELETE</Text>
-          </Pressable>
-        )}
-      </DetailModal>
+      </Modal>
     </>
   );
 };
@@ -281,6 +342,14 @@ const styles = StyleSheet.create({
     height: 32,
   },
   addButton: {
-    width: "32%",
+    marginTop: 8,
+    width: "40%",
+    padding: 8,
+    borderBottomRightRadius: 16,
+    marginBottom: "1%",
+  },
+  addButtonText: {
+    color: "white",
+    fontSize: 16,
   },
 });

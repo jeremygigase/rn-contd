@@ -53,7 +53,7 @@ const CharactersScreen = (props) => {
       <SegmentFilter props={props} text={"characters"} screen={"Characters"} />
     );
   }
-  const btnText = "+ Add Character";
+
   return (
     <View>
       <ProjectHeader

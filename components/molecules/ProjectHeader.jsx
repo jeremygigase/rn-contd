@@ -14,63 +14,31 @@ import {
 function getModal(type, id, color) {
   switch (type) {
     case "project":
-      return (
-        <ProjectModal id={id}>
-          <View style={{ ...styles.addButton, backgroundColor: color }}>
-            <Text style={styles.addButtonText}>+ Invite a member</Text>
-          </View>
-        </ProjectModal>
-      );
+      return <ProjectModal id={id} color={color} />;
     case "character":
-      return (
-        <CharacterModal id={id}>
-          <View style={{ ...styles.addButton, backgroundColor: color }}>
-            <Text style={styles.addButtonText}>+ Add Character </Text>
-          </View>
-        </CharacterModal>
-      );
+      return <CharacterModal id={id} color={color} />;
     case "scene":
-      return (
-        <SceneModal id={id}>
-          <View style={{ ...styles.addButton, backgroundColor: color }}>
-            <Text style={styles.addButtonText}>+ Add Scene </Text>
-          </View>
-        </SceneModal>
-      );
+      return <SceneModal id={id} color={color} />;
     case "location":
-      return (
-        <LocationModal id={id}>
-          <View style={{ ...styles.addButton, backgroundColor: color }}>
-            <Text style={styles.addButtonText}>+ Add Location</Text>
-          </View>
-        </LocationModal>
-      );
+      return <LocationModal id={id} color={color} />;
     case "script day":
-      return (
-        <ScriptDayModal id={id}>
-          <View style={{ ...styles.addButton, backgroundColor: color }}>
-            <Text style={styles.addButtonText}>+ Add Script Day </Text>
-          </View>
-        </ScriptDayModal>
-      );
+      return <ScriptDayModal id={id} color={color} />;
   }
 }
 
 const ProjectHeader = ({ headerText, scnBtn, type, color }) => {
   const modal = getModal(type, null, color);
-
-  console.log(color);
   return (
     <View style={styles.header}>
       <Text style={styles.headerText}>{headerText}</Text>
       <View style={styles.buttons}>
         {modal}
         {scnBtn && (
-          <CharacterModal id={id}>
-            <View style={styles.addButtonScene}>
+          <SceneModal id={id}>
+            <View style={{ ...styles.addButton, backgroundColor: color }}>
               <Text style={styles.addButtonText}>+ Add Scene </Text>
             </View>
-          </CharacterModal>
+          </SceneModal>
         )}
       </View>
     </View>

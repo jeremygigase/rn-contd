@@ -4,8 +4,8 @@ import {
   CREATE_SCRIPT_DAY,
   UPDATE_SCRIPT_DAY,
   SET_SCRIPT_DAYS,
-} from "_actions/characters";
-import ScriptDay from "_models/character";
+} from "_actions/scriptDays";
+import ScriptDay from "_models/scriptDay";
 
 const initialState = {
   scriptDays: SCRIPTDAYS,
@@ -27,11 +27,12 @@ export default (state = initialState, action) => {
         ),
       };
     case CREATE_SCRIPT_DAY:
+      console.log(action);
       const newScriptDay = new ScriptDay(
         new Date().toString(),
-        "3",
-        action.scriptDay.name,
-        action.scriptDay.remarks
+        action.scriptDayData.projectId,
+        action.scriptDayData.name,
+        action.scriptDayData.remarks
       );
       return {
         ...state,
@@ -43,11 +44,11 @@ export default (state = initialState, action) => {
         (proj) => proj.id === action.sid
       );
 
-      const updatedCharacter = new Character(
+      const updatedScriptDay = new ScriptDay(
         action.sid,
         state.projectScriptDays[scriptDayIndex].projectId,
-        action.scriptDay.name,
-        action.scriptDay.remarks
+        action.scriptDayData.name,
+        action.scriptDayData.remarks
       );
       const updatedProjectScripDays = [...state.projectScriptDays];
       updatedProjectScripDays[scriptDayIndex] = updatedScriptDay;

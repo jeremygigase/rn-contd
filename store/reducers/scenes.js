@@ -38,7 +38,6 @@ export default (state = initialState, action) => {
         action.sceneData.remarks,
         action.sceneData.date
       );
-      console.log(newSCENE);
       return {
         ...state,
         scenes: state.scenes.concat(newScene),

@@ -37,7 +37,6 @@ export default (state = initialState, action) => {
         action.characterData.callsheetNumber,
         action.characterData.remarks
       );
-      console.log(newCharacter);
       return {
         ...state,
         characters: state.characters.concat(newCharacter),

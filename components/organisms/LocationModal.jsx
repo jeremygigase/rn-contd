@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useCallback, useReducer } from "react";
-import { StyleSheet, View, Pressable, Modal, Text, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Modal,
+  Text,
+  Alert,
+  Image,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
-import * as characterActions from "_store/actions/characters";
+import * as locationActions from "_store/actions/locations";
 
 // components
 import { Input } from "_atoms";
@@ -11,34 +19,31 @@ import { Input } from "_atoms";
 import formReducer from "_helpers/formReducer";
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
+//Assets
+import { Icons } from "_assets";
+
 const LocationModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const dispatch = useDispatch();
 
-  const editedCharacter = useSelector((state) =>
-    state.characters.characters.find((char) => char.id === props.id)
+  const editedLocation = useSelector((state) =>
+    state.locations.locations.find((loc) => loc.id === props.id)
   );
 
-  const dispatch = useDispatch();
-  // id, projectId,characterName,actorName,pictureFilename,callsheetNumber
+  //id, projectId, name, remarks
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      characterName: editedCharacter ? editedCharacter.characterName : "",
-      actorName: editedCharacter ? editedCharacter.actorName : "",
-      pictureFilename: editedCharacter ? editedCharacter.pictureFilename : "",
-      callsheetNumber: editedCharacter ? editedCharacter.callsheetNumber : "",
-      remarks: editedCharacter ? editedCharacter.remarks : "",
+      name: editedLocation ? editedLocation.name : "",
+      remarks: editedLocation ? editedLocation.remarks : "",
     },
     inputValidities: {
-      characterName: editedCharacter ? true : false,
-      actorName: editedCharacter ? true : false,
-      pictureFilename: editedCharacter ? true : false,
-      callsheetNumber: editedCharacter ? true : false,
-      remarks: editedCharacter ? true : false,
+      name: editedLocation ? true : false,
+      remarks: editedLocation ? true : false,
     },
-    formIsValid: editedCharacter ? true : false,
+    formIsValid: editedLocation ? true : false,
   });
 
   useEffect(() => {
@@ -54,33 +59,25 @@ const LocationModal = (props) => {
       ]);
       return;
     }
-    if (editedCharacter) {
+    if (editedLocation) {
       dispatch(
-        characterActions.updateCharacter(
+        locationActions.updateLocation(
           props.id,
-          formState.inputValues.characterName,
-          formState.inputValues.actorName,
-          formState.inputValues.pictureFilename,
-          formState.inputValues.callsheetNumber,
+          formState.inputValues.name,
           formState.inputValues.remarks
         )
       );
     } else {
       dispatch(
-        characterActions.createCharacter(
-          formState.inputValues.characterName,
-          formState.inputValues.actorName,
-          formState.inputValues.pictureFilename,
-          formState.inputValues.callsheetNumber,
+        locationActions.createLocation(
+          global.id,
+          formState.inputValues.name,
           formState.inputValues.remarks
         )
       ),
         //tijdelijke oplossing beter render skippen
         //shouldComponentUpdate
-        (formState.inputValues.characterName = ""),
-        (formState.inputValues.actorName = ""),
-        (formState.inputValues.pictureFilename = ""),
-        (formState.inputValues.callsheetNumber = ""),
+        (formState.inputValues.name = ""),
         (formState.inputValues.remarks = ""),
         (formState.formIsValid = false);
     }
@@ -100,7 +97,6 @@ const LocationModal = (props) => {
         isValid: inputValidity,
         input: inputIdentifier,
       });
-      //console.log(inputValue);
     },
     [dispatchFormState]
   );
@@ -108,7 +104,7 @@ const LocationModal = (props) => {
   const createTwoButtonAlert = () =>
     Alert.alert(
       "Are you sure?",
-      "Do you really want to delete this character?",
+      "Do you really want to delete this location?",
       [
         {
           text: "No",
@@ -121,8 +117,8 @@ const LocationModal = (props) => {
           text: "Yes",
           style: "destructive",
           onPress: () => {
-            props.navigation.navigate("Characters Overview");
-            dispatch(characterActions.deleteCharacter(props.id));
+            props.navigation.navigate("Locations Overview");
+            dispatch(locationActions.deleteLocation(props.id));
           },
         },
       ],
@@ -131,9 +127,35 @@ const LocationModal = (props) => {
 
   return (
     <>
-      <Pressable style={styles.addButton} onPress={() => setModalVisible(true)}>
-        {props.children}
-      </Pressable>
+      {editedLocation ? (
+        <Pressable
+          style={{
+            marginLeft: 16,
+            width: "24%",
+          }}
+          onPress={() => setModalVisible(true)}>
+          <View>
+            <Image
+              source={Icons["edit"]}
+              style={{
+                width: 20,
+                height: 20,
+              }}
+            />
+          </View>
+        </Pressable>
+      ) : (
+        <Pressable
+          style={{ ...styles.addButton, backgroundColor: props.color }}
+          onPress={() => setModalVisible(true)}>
+          <View
+            style={{
+              marginLeft: 16,
+            }}>
+            <Text style={styles.addButtonText}>+ Add Location</Text>
+          </View>
+        </Pressable>
+      )}
 
       <Modal
         animationType='fade'
@@ -152,86 +174,48 @@ const LocationModal = (props) => {
               <Text style={styles.closeIcon}>X</Text>
             </Pressable>
             <View style={styles.editInfoContainer}>
-              {editedCharacter ? (
-                <Text style={styles.title}>Edit Character</Text>
+              {editedLocation ? (
+                <Text style={styles.title}>Edit Location</Text>
               ) : (
-                <Text style={styles.title}>Add Character</Text>
+                <Text style={styles.title}>Add Location</Text>
               )}
 
               <View style={styles.editInfo}>
                 <Input
-                  id={"callsheetNumber"}
-                  label={"Callsheet Number"}
-                  errorText='Please enter a valid callsheet number!'
-                  keyboardType='decimal-pad'
+                  id={"name"}
+                  label={"Name"}
+                  errorText='Please enter a valid name!'
                   //autoCapitalize='sentences'
                   //autoCorrect
                   returnKeyType='next'
-                  initialValue={
-                    editedCharacter ? editedCharacter.callsheetNumber : ""
-                  }
-                  initiallyValid={!!editedCharacter}
+                  initialValue={editedLocation ? editedLocation.name : ""}
+                  initiallyValid={!!editedLocation}
                   onInputChange={inputChangeHandler}
                   minLength={1}
                   maxLength={16}
                   required
                 />
-                <Input
-                  id={"characterName"}
-                  label={"Character Name"}
-                  errorText='Please enter a valid character name!'
-                  initialValue={
-                    editedCharacter ? editedCharacter.characterName : ""
-                  }
-                  returnKeyType='next'
-                  initiallyValid={!!editedCharacter}
-                  onInputChange={inputChangeHandler}
-                  minLength={1}
-                  maxLength={48}
-                  required
-                />
-                <Input
-                  id={"pictureFilename"}
-                  label={"Picture"}
-                  errorText='Please enter a valid picture!'
-                  initialValue={
-                    editedCharacter ? editedCharacter.pictureFilename : ""
-                  }
-                  returnKeyType='next'
-                  onInputChange={inputChangeHandler}
-                  initiallyValid={!!editedCharacter}
-                />
-                <Input
-                  id={"actorName"}
-                  label={"Played by Actor Name"}
-                  errorText='Please enter a valid actor name!'
-                  initialValue={
-                    editedCharacter ? editedCharacter.actorName : ""
-                  }
-                  initiallyValid={!!editedCharacter}
-                  returnKeyType='next'
-                  onInputChange={inputChangeHandler}
-                  required
-                />
+
                 <Input
                   id={"remarks"}
                   label={"Remarks"}
                   errorText='Please enter a valid remark!'
                   multiline
-                  initialValue={editedCharacter ? editedCharacter.remarks : ""}
-                  initiallyValid={!!editedCharacter}
+                  initialValue={editedLocation ? editedLocation.remarks : ""}
+                  initiallyValid={!!editedLocation}
                   autoCapitalize='sentences'
                   autoCorrect
                   onInputChange={inputChangeHandler}
                   minLength={0}
                   maxLength={240}
                 />
+                {/* pass this to child or pass submit??? other things to finish now project header is fucked */}
                 <Pressable style={styles.submitButton} onPress={() => submit()}>
                   <Text>Submit</Text>
                 </Pressable>
               </View>
             </View>
-            {editedCharacter && (
+            {editedLocation && (
               <Pressable
                 onPress={createTwoButtonAlert}
                 style={styles.deleteButton}>
@@ -304,6 +288,14 @@ const styles = StyleSheet.create({
     height: 32,
   },
   addButton: {
-    width: "32%",
+    marginTop: 8,
+    width: "40%",
+    padding: 8,
+    borderBottomRightRadius: 16,
+    marginBottom: "1%",
+  },
+  addButtonText: {
+    color: "white",
+    fontSize: 16,
   },
 });

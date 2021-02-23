@@ -74,8 +74,8 @@ export const CHARACTERS = [
 export const LOCATIONS = [
   new Location("1", "1", "Space"),
   new Location("2", "1", "Indoor House"),
-  new Location("3", "3", "Huis Anna - Keuken"),
-  new Location("4", "3", "Huis Nicole"),
+  new Location("3", "3", "Huis Anna - Keuken", "ik ben een remark"),
+  new Location("4", "3", "Huis Nicole", "ik ben een remark"),
 ];
 
 export const PICTURES = [

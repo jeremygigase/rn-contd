@@ -7,44 +7,7 @@ import { Icons } from "_assets";
 const DetailModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  return (
-    <>
-      <Pressable style={styles.addButton} onPress={() => setModalVisible(true)}>
-        <View
-          style={{
-            marginLeft: 16,
-          }}>
-          <Image
-            source={Icons["edit"]}
-            style={{
-              width: 20,
-              height: 20,
-            }}
-          />
-        </View>
-      </Pressable>
-      <Modal
-        animationType='fade'
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.modalView}>
-          <View style={styles.modal}>
-            <Pressable
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-              style={styles.closeButton}>
-              <Text style={styles.closeIcon}>X</Text>
-            </Pressable>
-            {props.children}
-          </View>
-        </View>
-      </Modal>
-    </>
-  );
+  return <>{props.children}</>;
 };
 
 export default DetailModal;

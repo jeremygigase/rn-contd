@@ -15,19 +15,27 @@ import Colors from "_constants/Colors";
 import { SceneIcons } from "_assets";
 
 const ScriptDayDetailScreen = (props) => {
-  const id = props.route.params.id;
-
   const selectedScriptDay = useSelector((state) =>
-    state.scriptDays.scriptDays.filter((scr) => scr.id === id)
+    state.scriptDays.scriptDays.filter(
+      (scr) => scr.id === props.route.params.id
+    )
   );
+
+  let id = null;
+  let name = null;
+  let remarks = null;
+
+  if (selectedScriptDay[0]) {
+    id = selectedScriptDay[0].id;
+    name = selectedScriptDay[0].name;
+    remarks = selectedScriptDay[0].remarks;
+  }
 
   const selectedScenes = useSelector((state) =>
     state.scenes.scenes.filter((scn) => {
-      return scn.scriptDayId === selectedScriptDay[0].id;
+      return scn.scriptDayId === id;
     })
   );
-
-  const { name } = selectedScriptDay[0];
 
   const renderProjectItem = (itemData) => {
     return (
@@ -50,6 +58,9 @@ const ScriptDayDetailScreen = (props) => {
         title={name}
         color={Colors.scriptDays}
         added={"Added on xx/xx/xxxx by member x"}
+        type={"script day"}
+        id={props.route.params.id}
+        navigation={props.navigation}
       />
       {selectedScenes !== "undefined" && selectedScenes.length > 0 ? (
         <FlatList

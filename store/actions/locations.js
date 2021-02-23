@@ -25,12 +25,11 @@ export const createLocation = (projectId, name, remarks) => {
   };
 };
 
-export const updateLocation = (id, projectId, name, remarks) => {
+export const updateLocation = (id, name, remarks) => {
   return {
     type: UPDATE_LOCATION,
     lid: id,
     locationData: {
-      projectId,
       name,
       remarks,
     },

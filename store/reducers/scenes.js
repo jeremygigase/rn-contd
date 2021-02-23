@@ -5,11 +5,11 @@ import {
   UPDATE_SCENE,
   SET_SCENES,
 } from "_actions/scenes";
-import SCENE from "_models/scene";
+import Scene from "_models/scene";
 
 const initialState = {
   scenes: SCENES,
-  projectScenes: SCENES.filter((char) => char.projectId === "3"),
+  projectScenes: SCENES.filter((sce) => sce.projectId === "3"),
 };
 // id,
 // projectId,
@@ -28,11 +28,12 @@ export default (state = initialState, action) => {
         projectScenes: scenes.filter((sce) => sce.projectId === "3"),
       };
     case CREATE_SCENE:
+      console.log(action);
       const newScene = new Scene(
         new Date().toString(),
-        "3",
-        "2", //ScriptDay
-        "2", // location
+        action.sceneData.projectId, // DEZE KOMT WEL DOOR???
+        action.sceneData.scriptDayId, //ScriptDay
+        action.sceneData.locationId, // location
         new Date().toString(),
         action.sceneData.sceneNumber,
         action.sceneData.remarks,
@@ -44,6 +45,7 @@ export default (state = initialState, action) => {
         projectScenes: state.projectScenes.concat(newScene),
       };
     case UPDATE_SCENE:
+      console.log(action);
       const sceneIndex = state.projectScenes.findIndex(
         (proj) => proj.id === action.sid
       );
@@ -53,11 +55,12 @@ export default (state = initialState, action) => {
         state.projectScenes[sceneIndex].projectId,
         action.sceneData.scriptDayId,
         action.sceneData.locationId,
-        action.sceneData.created,
+        state.projectScenes[sceneIndex].created,
         action.sceneData.sceneNumber,
         action.sceneData.remarks,
         action.sceneData.date
       );
+      console.log(updatedScene);
       const updatedProjectScenes = [...state.projectScenes];
       updatedProjectScenes[sceneIndex] = updatedScene;
       const allScenesIndex = state.scenes.findIndex(
@@ -73,7 +76,7 @@ export default (state = initialState, action) => {
     case DELETE_SCENE:
       return {
         ...state,
-        projectScenes: state.projectCharacters.filter(
+        projectScenes: state.projectScenes.filter(
           (proj) => proj.id !== action.sid
         ),
         scenes: state.scenes.filter((sce) => sce.id !== action.sid),

@@ -9,7 +9,9 @@ import Location from "_models/location";
 
 const initialState = {
   locations: LOCATIONS,
-  projectLocations: LOCATIONS.filter((loc) => loc.projectId === "3"),
+  projectLocations: LOCATIONS.filter(
+    (loc) => loc.projectId === "3" //global.id
+  ),
 };
 
 // id,
@@ -22,9 +24,12 @@ export default (state = initialState, action) => {
     case SET_LOCATIONS:
       return {
         locations: state.locations,
-        projectLocations: locations.filter((loc) => loc.projectId === "3"),
+        projectLocations: locations.filter(
+          (loc) => loc.projectId === "3" //global.id
+        ),
       };
     case CREATE_LOCATION:
+      console.log(action);
       const newLocation = new Location(
         new Date().toString(),
         action.locationData.projectId,

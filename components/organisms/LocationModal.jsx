@@ -75,8 +75,6 @@ const LocationModal = (props) => {
           formState.inputValues.remarks
         )
       ),
-        //tijdelijke oplossing beter render skippen
-        //shouldComponentUpdate
         (formState.inputValues.name = ""),
         (formState.inputValues.remarks = ""),
         (formState.formIsValid = false);
@@ -209,7 +207,6 @@ const LocationModal = (props) => {
                   minLength={0}
                   maxLength={240}
                 />
-                {/* pass this to child or pass submit??? other things to finish now project header is fucked */}
                 <Pressable style={styles.submitButton} onPress={() => submit()}>
                   <Text>Submit</Text>
                 </Pressable>

@@ -80,6 +80,7 @@ const CharacterModal = (props) => {
     } else {
       dispatch(
         characterActions.createCharacter(
+          global.id,
           formState.inputValues.characterName,
           formState.inputValues.actorName,
           formState.inputValues.pictureFilename,

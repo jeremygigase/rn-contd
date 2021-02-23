@@ -9,7 +9,9 @@ import Character from "_models/character";
 
 const initialState = {
   characters: CHARACTERS,
-  projectCharacters: CHARACTERS.filter((char) => char.projectId === "3"),
+  projectCharacters: CHARACTERS.filter(
+    (char) => char.projectId === "3" //global.id
+  ),
 };
 
 // id,
@@ -25,12 +27,15 @@ export default (state = initialState, action) => {
     case SET_CHARACTERS:
       return {
         characters: action.characters,
-        projectCharacters: characters.filter((char) => char.projectId === "3"),
+        projectCharacters: characters.filter(
+          (char) => char.projectId === "3" //global.id
+        ),
       };
     case CREATE_CHARACTER:
+      console.log(global.id);
       const newCharacter = new Character(
         new Date().toString(),
-        "3",
+        action.characterData.projectId,
         action.characterData.characterName,
         action.characterData.actorName,
         action.characterData.pictureFilename,
@@ -46,7 +51,6 @@ export default (state = initialState, action) => {
       const characterIndex = state.projectCharacters.findIndex(
         (proj) => proj.id === action.cid
       );
-
       const updatedCharacter = new Character(
         action.cid,
         state.projectCharacters[characterIndex].projectId,

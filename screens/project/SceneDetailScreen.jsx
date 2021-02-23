@@ -26,15 +26,38 @@ LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const SceneDetailScreen = (props) => {
-  const { icon, id } = props.route.params;
+  const { icon } = props.route.params;
 
   const selectedScene = useSelector((state) =>
-    state.scenes.scenes.filter((sce) => sce.id === id)
+    state.scenes.scenes.filter((sce) => sce.id === props.route.params.id)
   );
+
+  let id = null;
+  let scriptDayId = null;
+  let locationId = null;
+  let sceneNumber = null;
+  let created = null;
+  let date = null;
+  let remarks = null;
+
+  let scriptDayName = null;
+  let locationName = null;
+
+  if (selectedScene[0]) {
+    id = selectedScene[0].id;
+    scriptDayId = selectedScene[0].scriptDayId;
+    locationId = selectedScene[0].locationId;
+    sceneNumber = selectedScene[0].sceneNumber;
+    created = selectedScene[0].created;
+    date = selectedScene[0].date;
+    remarks = selectedScene[0].remarks;
+  }
 
   const characterIds = useSelector((state) =>
     state.scenesCharacters.scenesCharacters
-      .filter((sceneCharacter) => sceneCharacter.sceneId === id)
+      .filter(
+        (sceneCharacter) => sceneCharacter.sceneId === props.route.params.id
+      )
       .map((chr) => chr.characterId)
   );
 
@@ -45,22 +68,24 @@ const SceneDetailScreen = (props) => {
   );
 
   const selectedLocation = useSelector((state) =>
-    state.locations.locations.filter(
-      (loc) => loc.id === selectedScene[0].locationId
-    )
+    state.locations.locations.filter((loc) => loc.id === locationId)
   );
 
   const selectedScriptDay = useSelector((state) =>
-    state.scriptDays.scriptDays.filter(
-      (loc) => loc.id === selectedScene[0].scriptDayId
-    )
+    state.scriptDays.scriptDays.filter((loc) => loc.id === scriptDayId)
   );
+
+  if (selectedLocation[0]) {
+    locationName = selectedLocation[0].name;
+  }
+
+  if (selectedScriptDay[0]) {
+    scriptDayName = selectedScriptDay[0].name;
+  }
 
   const selectedPictures = useSelector((state) =>
-    state.pictures.pictures.filter((pct) => pct.sceneId === selectedScene[0].id)
+    state.pictures.pictures.filter((pct) => pct.sceneId === id)
   );
-
-  const { sceneNumber, created, date, remarks } = selectedScene[0];
 
   const renderItem = (itemData) => {
     return (
@@ -73,9 +98,12 @@ const SceneDetailScreen = (props) => {
   return (
     <Main style={styles.main}>
       <DetailHeader
-        title={`Scene ${sceneNumber} id ${id}`}
+        title={`Scene ${sceneNumber}`}
         color={Colors.scenes}
         added={`Added on ${created} by member x`}
+        type={"scene"}
+        id={props.route.params.id}
+        navigation={props.navigation}
       />
       <View style={styles.characterContainer}>
         <View
@@ -113,7 +141,7 @@ const SceneDetailScreen = (props) => {
             selected={selectedLocation}
             screen={"Locations"}
             detail={"Locations Overview"}
-            name={selectedLocation[0].name}
+            name={locationName}
             color={Colors.locations}
             icon={Icons["tabLocationOn"]}
             navigation={props.navigation}
@@ -123,7 +151,7 @@ const SceneDetailScreen = (props) => {
             selected={selectedScriptDay}
             screen={"Script Days"}
             detail={"Script Days Overview"}
-            name={selectedScriptDay[0].name}
+            name={scriptDayName}
             color={Colors.scriptDays}
             icon={Icons["tabScriptDayOn"]}
             navigation={props.navigation}

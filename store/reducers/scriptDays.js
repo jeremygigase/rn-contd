@@ -9,7 +9,9 @@ import ScriptDay from "_models/scriptDay";
 
 const initialState = {
   scriptDays: SCRIPTDAYS,
-  projectScriptDays: SCRIPTDAYS.filter((pro) => pro.projectId === "3"),
+  projectScriptDays: SCRIPTDAYS.filter(
+    (pro) => pro.projectId === "3" //global.id
+  ),
 };
 
 // id,
@@ -23,11 +25,10 @@ export default (state = initialState, action) => {
       return {
         scriptDays: action.scriptDays,
         projectScriptDays: action.projectScriptDays.filter(
-          (pro) => pro.projectId === "3"
+          (pro) => pro.projectId === "3" //global.id
         ),
       };
     case CREATE_SCRIPT_DAY:
-      console.log(action);
       const newScriptDay = new ScriptDay(
         new Date().toString(),
         action.scriptDayData.projectId,

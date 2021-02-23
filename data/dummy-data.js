@@ -139,22 +139,22 @@ export const PICTURES = [
 ];
 
 export const PROJECTS = [
-  new Project(
-    "1",
-    "Cowboy Bebop",
-    "01/06/2001",
-    "Hajime Yatate",
-    "#ADDADF",
-    "https://dazedimg-dazedgroup.netdna-ssl.com/1200/azure/dazed-prod/1290/3/1293538.jpg"
-  ),
-  new Project(
-    "2",
-    "Cowboy Bebop Live Action",
-    "01/06/2019",
-    "Hajime Yatate",
-    "red",
-    "https://upload.wikimedia.org/wikipedia/commons/7/76/Cowboy_Bebop_intertitle.jpg"
-  ),
+  // new Project(
+  //   "1",
+  //   "Cowboy Bebop",
+  //   "01/06/2001",
+  //   "Hajime Yatate",
+  //   "#ADDADF",
+  //   "https://dazedimg-dazedgroup.netdna-ssl.com/1200/azure/dazed-prod/1290/3/1293538.jpg"
+  // ),
+  // new Project(
+  //   "2",
+  //   "Cowboy Bebop Live Action",
+  //   "01/06/2019",
+  //   "Hajime Yatate",
+  //   "red",
+  //   "https://upload.wikimedia.org/wikipedia/commons/7/76/Cowboy_Bebop_intertitle.jpg"
+  // ),
   new Project(
     "3",
     "Zie Mij Graag",

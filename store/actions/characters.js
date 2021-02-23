@@ -16,6 +16,7 @@ export const deleteCharacter = (characterId) => {
 };
 
 export const createCharacter = (
+  projectId,
   characterName,
   actorName,
   pictureFilename,
@@ -25,6 +26,7 @@ export const createCharacter = (
   return {
     type: CREATE_CHARACTER,
     characterData: {
+      projectId,
       characterName,
       actorName,
       pictureFilename,
